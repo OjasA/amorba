@@ -1,1 +1,1 @@
-Amorba
+Client for **Amorba** written in Java. 
