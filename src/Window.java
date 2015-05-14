@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 import javax.swing.JFrame;
 
 
@@ -5,13 +7,14 @@ public class Window extends JFrame{
 
 	private Window()
 	{
-		this.setTitle("Game");
+		this.setTitle("Amorba");
 		this.setSize(1024, 768);
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.setContentPane(new Game()); //main game class
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setContentPane(new Menu()); //main game class
         
         
 	}
