@@ -1,11 +1,10 @@
 import java.awt.Point;
 
-
 public class Cell {
 	private int size;
 	private Point location;
-	
-	public Cell (int theSize, Point theLocation) {
+
+	public Cell(int theSize, Point theLocation) {
 		setSize(theSize);
 		setLocation(theLocation);
 	}
