@@ -16,6 +16,10 @@ public class Cell {
 	public void setSize(int size) {
 		this.size = size;
 	}
+	
+	public void addSize(int size) {
+		this.size += size;
+	}
 
 	public Point getLocation() {
 		return location;
