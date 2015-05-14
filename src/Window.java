@@ -11,7 +11,6 @@ public class Window extends JFrame{
 		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setContentPane(new Menu()); //main game class
 	}
 
