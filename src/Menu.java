@@ -16,24 +16,22 @@ public class Menu extends JFrame {
 	{
 		//main setup
 		setTitle("Amorba");
-		setSize(200, 300);
+		setSize(205, 300);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
+		setVisible(false);
 		
 		
 		//panel setup
 		JPanel p = new JPanel(null);
 		setContentPane(p);
-		p.setVisible(false);
 		
 		
 		//join game button
 		JButton join = new JButton("Join Game");
-		join.setBounds(50, 220, 100, 30);
+		join.setBounds(50, 235, 100, 30);
 		p.add(join);
-		//setContentPane(p);
 		
 		//amorba icon
 		JLabel icon = new JLabel();
@@ -48,29 +46,29 @@ public class Menu extends JFrame {
 		icon.setIcon(new ImageIcon(img2));
 		icon.setBounds(100 - iconSize / 2, 0, iconSize, iconSize);
 		p.add(icon);
-		//setContentPane(p);
 		
 		//"Name" label text
-		JTextArea label = new JTextArea("Name:");
-		label.setEditable(false);
+		JLabel label = new JLabel("Name:");
 		label.setBounds(80, 130, 50, 20);
 		label.setBackground(p.getBackground());
 		p.add(label);
-		//setContentPane(p);
 		
 		//Name text input field 
 		JTextField field = new JTextField();
 		field.setText("");
-		field.setBounds(50, 150, 100, 25);
+		field.setBounds(30, 150, 140, 25);
 		p.add(field);
 		field.setDocument(new JTextFieldLimit(15)); // limit input size to 15
-		//setContentPane(p);
 		
 		//banner setup
-		
+		try {
+			img = ImageIO.read(new File("icons/amorbaicon-bmp-small.png")); // read image
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		setIconImage(img);
 		
-		p.setVisible(true);
+		setVisible(true);
 	}
 	
 	public static void main(String[] args)
