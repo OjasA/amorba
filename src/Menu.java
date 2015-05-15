@@ -53,11 +53,12 @@ public class Menu extends JFrame{
 		p.add(label);
 		setContentPane(p);
 		
-		//Name text input field (note - there is no easy way to limit input length, skipping for now)
+		//Name text input field 
 		JTextField field = new JTextField();
 		field.setText("");
 		field.setBounds(50, 150, 100, 25);
 		p.add(field);
+		field.setDocument(new JTextFieldLimit(15)); // Limit input size to 15
 		setContentPane(p);
 		
 	}
