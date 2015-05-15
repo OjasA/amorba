@@ -14,8 +14,8 @@ public class Virus extends Cell {
 	 * Divides the virus into two if the virus is too large.
 	 */
 	public void virusSplit() {
-		if(this.getSize() > 200) {
-			this.setSize(100);
+		if(this.getRadius() > 200) {
+			this.setRadius(100);
 			Virus splitVirus = new Virus(100, new Point());
 		}
 	}

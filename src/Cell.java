@@ -1,24 +1,25 @@
+import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Cell {
-	private int size;
+public class Cell extends AbstractDraw {
+	private int radius;
 	private Point location;
 
-	public Cell(int theSize, Point theLocation) {
-		setSize(theSize);
+	public Cell(int theradius, Point theLocation) {
+		setRadius(theradius);
 		setLocation(theLocation);
 	}
-
-	public int getSize() {
-		return size;
+	
+	public int getRadius() {
+		return radius;
 	}
 
-	public void setSize(int size) {
-		this.size = size;
+	public void setRadius(int radius) {
+		this.radius = radius;
 	}
 	
-	public void addSize(int size) {
-		this.size += size;
+	public void addRadius(int radius) {
+		this.radius += radius;
 	}
 
 	public Point getLocation() {
@@ -27,5 +28,11 @@ public class Cell {
 
 	public void setLocation(Point location) {
 		this.location = location;
+	}
+
+	@Override
+	public void draw(Graphics2D g2d) {
+		// TODO Auto-generated method stub
+		
 	}
 }
