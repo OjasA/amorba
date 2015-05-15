@@ -26,9 +26,6 @@ public class Menu extends JFrame {
 		//panel setup
 		JPanel p = new JPanel(null);
 		
-		//banner setup
-		ImageIcon barIcon = new ImageIcon("icons/amorbaicon-bmp.png");
-		setIconImage(barIcon.getImage());
 		
 		//join game button
 		JButton join = new JButton("Join Game");
@@ -67,6 +64,15 @@ public class Menu extends JFrame {
 		field.setDocument(new JTextFieldLimit(15)); // limit input size to 15
 		setContentPane(p);
 		
+		//banner setup
+		Image barImage = null;
+		try {
+			barImage = ImageIO.read(new File("icons/amorbaicon-bmp.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		setIconImage(barImage);
 	}
 	
 	public static void main(String[] args)
