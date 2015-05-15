@@ -17,7 +17,7 @@ public class Menu extends JFrame{
 	{
 		//main setup
 		setTitle("Amorba");
-		setSize(205, 300);
+		setSize(205, 335);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,6 +66,16 @@ public class Menu extends JFrame{
 			}
 		});
 		p.add(join);
+		
+		JButton settings = new JButton("Settings");
+		settings.setBounds(50, 270, 100, 30);
+		settings.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				new Settings(field.getText());
+			}
+		});
+		p.add(settings);
 		
 		//banner setup
 		try {
