@@ -1,11 +1,10 @@
 import java.awt.Point;
 
 public class FreeMass extends Cell {
-	double speed;
 	
-	public FreeMass(Point theLocation, double s) {
-		super(20, theLocation);
-		speed = 100;
+	public FreeMass(Point theLocation, int xSpeed, int ySpeed) {
+		super(20, theLocation, xSpeed, ySpeed);
 	}
+	
 
 }
