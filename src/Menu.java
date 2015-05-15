@@ -5,12 +5,13 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.awt.Window;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
-public class Menu extends JFrame{
+public class Menu extends JFrame {
 	public Menu()
 	{
 		//main setup
@@ -21,8 +22,13 @@ public class Menu extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
+		
 		//panel setup
 		JPanel p = new JPanel(null);
+		
+		//banner setup
+		ImageIcon barIcon = new ImageIcon("icons/amorbaicon-bmp.png");
+		setIconImage(barIcon.getImage());
 		
 		//join game button
 		JButton join = new JButton("Join Game");
@@ -35,11 +41,11 @@ public class Menu extends JFrame{
 		BufferedImage img = null;
 		int iconSize = 100;
 		try {
-			img = ImageIO.read(new File("icons/amorbaicon-bmp.png")); //read image
+			img = ImageIO.read(new File("icons/amorbaicon-bmp.png")); // read image
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		Image img2 = img.getScaledInstance(iconSize, iconSize, Image.SCALE_SMOOTH); //resize image to fit swing element
+		Image img2 = img.getScaledInstance(iconSize, iconSize, Image.SCALE_SMOOTH); // resize image to fit swing element
 		icon.setIcon(new ImageIcon(img2));
 		icon.setBounds(100 - iconSize / 2, 0, iconSize, iconSize);
 		p.add(icon);
@@ -58,7 +64,7 @@ public class Menu extends JFrame{
 		field.setText("");
 		field.setBounds(50, 150, 100, 25);
 		p.add(field);
-		field.setDocument(new JTextFieldLimit(15)); // Limit input size to 15
+		field.setDocument(new JTextFieldLimit(15)); // limit input size to 15
 		setContentPane(p);
 		
 	}
@@ -67,7 +73,6 @@ public class Menu extends JFrame{
 	{
 		new Menu();
 	}
-	
 	
 	
 }

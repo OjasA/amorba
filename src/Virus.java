@@ -10,6 +10,9 @@ public class Virus extends Cell {
 		super(size,location);
 	}
 	
+	/**
+	 * Divides the virus into two if the virus is too large.
+	 */
 	public void virusSplit() {
 		if(this.getSize() > 200) {
 			this.setSize(100);
