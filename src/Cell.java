@@ -7,7 +7,14 @@ public class Cell extends AbstractDraw {
 	private int xSpeed;
 	private int ySpeed;
 
-	public Cell(int theradius, Point theLocation , int xSpeed, int ySpeed) {
+	public Cell(int theradius, Point theLocation) {
+		setRadius(theradius);
+		setLocation(theLocation);
+		setXSpeed(0);
+		setYSpeed(0);
+	}
+	
+	public Cell(int theradius, Point theLocation, int xSpeed, int ySpeed) {
 		setRadius(theradius);
 		setLocation(theLocation);
 		setXSpeed(xSpeed);
@@ -34,19 +41,19 @@ public class Cell extends AbstractDraw {
 		this.location = location;
 	}
 	
-	public void getXSpeed(){
+	public int getXSpeed(){
 		return xSpeed;
 	}
 	
-	public int setXSpeed(int x){
+	public void setXSpeed(int x){
 		this.xSpeed = x;
 	}
 	
-	public void getYSpeed(){
+	public int getYSpeed(){
 		return ySpeed;
 	}
 	
-	public int setYSpeed(int y){
+	public void setYSpeed(int y){
 		this.ySpeed = y;
 	}
 
