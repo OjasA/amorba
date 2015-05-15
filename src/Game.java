@@ -1,7 +1,16 @@
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.awt.Window;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+
 
 
 public class Game extends JFrame{
@@ -26,6 +35,15 @@ public class Game extends JFrame{
 		setVisible(true);
 		setExtendedState(MAXIMIZED_BOTH);
 		
+		//banner setup
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File("icons/amorbaicon-bmp-small.png")); // read image
+																			
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		setIconImage(img);
 		//go back to menu when closing
 		addWindowListener(new WindowListener() {
 
