@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
-public class Menu extends JFrame {
+public class Menu extends JFrame{
 	public Menu()
 	{
 		//main setup
@@ -26,12 +27,6 @@ public class Menu extends JFrame {
 		//panel setup
 		JPanel p = new JPanel(null);
 		setContentPane(p);
-		
-		
-		//join game button
-		JButton join = new JButton("Join Game");
-		join.setBounds(50, 235, 100, 30);
-		p.add(join);
 		
 		//amorba icon
 		JLabel icon = new JLabel();
@@ -54,11 +49,23 @@ public class Menu extends JFrame {
 		p.add(label);
 		
 		//Name text input field 
-		JTextField field = new JTextField();
+		final JTextField field = new JTextField();
 		field.setText("");
 		field.setBounds(30, 150, 140, 25);
 		p.add(field);
 		field.setDocument(new JTextFieldLimit(15)); // limit input size to 15
+		
+		//join game button
+		JButton join = new JButton("Join Game");
+		join.setBounds(50, 235, 100, 30);
+		join.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				setVisible(false);
+				new Game(field.getText());
+			}
+		});
+		p.add(join);
 		
 		//banner setup
 		try {
@@ -75,6 +82,7 @@ public class Menu extends JFrame {
 	{
 		new Menu();
 	}
+
 	
 	
 }
