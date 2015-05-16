@@ -137,6 +137,19 @@ public class Settings extends JFrame {
 				setVisible(false);
 			}
 		});
+        JButton apply = new JButton("Apply");
+        apply.setAlignmentX(JScrollPane.RIGHT_ALIGNMENT);
+        buttonPanel.add(apply);
+        apply.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				for(int x = 0; x < options.size(); x++){
+					if(options.get(x).isSelected() == true){
+						options.get(x).setEnabled(false);
+					}
+				}
+			}
+		});
         JButton okay = new JButton("Accept");
         okay.setAlignmentX(JScrollPane.RIGHT_ALIGNMENT);
         buttonPanel.add(okay);
@@ -147,6 +160,7 @@ public class Settings extends JFrame {
 				for(int x = 0; x < options.size(); x++){
 					optionBox.set(x, options.get(x).isSelected());
 				}
+				/* Insert code for sending data to server */
 			}
 		});
         
