@@ -13,7 +13,7 @@ import javax.swing.*;
 
 
 public class Menu extends JFrame{
-	public Menu()
+	public Menu(String name)
 	{
 		//main setup
 		setTitle("Amorba");
@@ -22,6 +22,7 @@ public class Menu extends JFrame{
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(false);
+		
 		
 		
 		//panel setup
@@ -50,7 +51,6 @@ public class Menu extends JFrame{
 		
 		//Name text input field 
 		final JTextField field = new JTextField();
-		field.setText("");
 		field.setBounds(30, 150, 140, 25);
 		p.add(field);
 		field.setDocument(new JTextFieldLimit(15)); // limit input size to 15
@@ -85,12 +85,16 @@ public class Menu extends JFrame{
 		}
 		setIconImage(img);
 		
+		//fill field w/ previous name
+		field.setText(name);
+		
+		//set visible
 		setVisible(true);
 	}
 	
 	public static void main(String[] args)
 	{
-		new Menu();
+		new Menu("");
 	}
 
 	

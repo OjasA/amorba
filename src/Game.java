@@ -29,7 +29,6 @@ public class Game extends JFrame implements KeyListener{
 		{
 			name = theName;	
 		}
-		
 		//main setup
 		setTitle("Amorba");
 		setSize(800,600);
@@ -57,7 +56,9 @@ public class Game extends JFrame implements KeyListener{
 			public void windowClosed(WindowEvent arg0) {}
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				new Menu();
+				if (name == "Amoeba")
+					name = "";
+				new Menu(name);
 			}
 			@Override
 			public void windowDeactivated(WindowEvent arg0) {}
