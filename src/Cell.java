@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
@@ -6,6 +7,7 @@ public class Cell extends AbstractDraw {
 	private Point location;
 	private int xSpeed;
 	private int ySpeed;
+	private Color color;
 
 	public Cell(int theradius, Point theLocation) {
 		setRadius(theradius);
@@ -14,7 +16,7 @@ public class Cell extends AbstractDraw {
 		setYSpeed(0);
 	}
 	
-	public Cell(int theradius, Point theLocation, int xSpeed, int ySpeed) {
+	public Cell(int theradius, Point theLocation, int xSpeed, int ySpeed, Color color) {
 		setRadius(theradius);
 		setLocation(theLocation);
 		setXSpeed(xSpeed);

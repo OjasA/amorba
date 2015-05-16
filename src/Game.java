@@ -13,10 +13,13 @@ import javax.swing.*;
 
 
 
-public class Game extends JFrame{
+public class Game extends JFrame implements KeyListener{
 	private String name;
 	public Game(String theName)
 	{
+		//start key listener
+		addKeyListener(this);
+		
 		//string parsing
 		if (theName.matches(" *"))
 		{
@@ -44,51 +47,44 @@ public class Game extends JFrame{
 			e1.printStackTrace();
 		}
 		setIconImage(img);
+		
 		//go back to menu when closing
 		addWindowListener(new WindowListener() {
 
 			@Override
-			public void windowActivated(WindowEvent arg0) {
-				
-			}
-
+			public void windowActivated(WindowEvent arg0) {}
 			@Override
-			public void windowClosed(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
+			public void windowClosed(WindowEvent arg0) {}
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				new Menu();
-				
 			}
-
 			@Override
-			public void windowDeactivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
+			public void windowDeactivated(WindowEvent arg0) {}
 			@Override
-			public void windowDeiconified(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
+			public void windowDeiconified(WindowEvent arg0) {}
 			@Override
-			public void windowIconified(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
+			public void windowIconified(WindowEvent arg0) {}
 			@Override
-			public void windowOpened(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void windowOpened(WindowEvent arg0) {}
 		});
 
+		
+	}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+			dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }
