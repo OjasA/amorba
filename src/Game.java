@@ -53,13 +53,13 @@ public class Game extends JFrame implements KeyListener{
 			@Override
 			public void windowActivated(WindowEvent arg0) {}
 			@Override
-			public void windowClosed(WindowEvent arg0) {}
-			@Override
-			public void windowClosing(WindowEvent arg0) {
+			public void windowClosed(WindowEvent arg0) {
 				if (name == "Amoeba")
-					name = "";
+				name = "";
 				new Menu(name);
 			}
+			@Override
+			public void windowClosing(WindowEvent arg0) {}
 			@Override
 			public void windowDeactivated(WindowEvent arg0) {}
 			@Override
