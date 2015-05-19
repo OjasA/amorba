@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
  
 public class DatabaseManager extends JFrame {
@@ -41,27 +42,17 @@ public class DatabaseManager extends JFrame {
 
 		} catch (UnknownHostException e) {
 			JFrame err = new JFrame();
-			JPanel p = new JPanel();
-			err.setTitle("Error!");
-			err.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			JLabel server = new JLabel(
-					"Host unknown. Cannot establish connection");
-			p.add(server);
-			err.add(p, BorderLayout.CENTER);
-			err.pack();
-			err.setVisible(true);
+			JOptionPane.showMessageDialog(err,
+					"Host unknown. Cannot establish connection",
+				    "Connection error",
+				    JOptionPane.QUESTION_MESSAGE);
 		} catch (IOException e) {
 			JFrame err = new JFrame();
-			JPanel p = new JPanel();
-			err.setTitle("Error!");
-			err.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			JLabel server = new JLabel(
+			JOptionPane.showMessageDialog(err,
 					"<html>Cannot establish connection; the server may not be up at this time.<br>The following was received from the server:<br><br>"
-							+ e.getMessage());
-			p.add(server);
-			err.add(p, BorderLayout.CENTER);
-			err.pack();
-			err.setVisible(true);
+							+ e.getMessage(),
+				    "Connection error",
+				    JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }
