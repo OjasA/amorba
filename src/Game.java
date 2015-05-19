@@ -46,9 +46,7 @@ public class Game extends AbstractDraw implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("pressed");
-		if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
-			window.closeWindow();
+		
 	}
 
 	@Override

@@ -1,3 +1,4 @@
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -8,11 +9,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
-public class GameWindow extends JFrame {
+public class GameWindow extends JFrame implements KeyListener{
 	private String name;
 
 	public GameWindow(String theName) {
-
+		addKeyListener(this);
+		
 		// string parsing
 		if (theName.matches(" *")) {
 			name = "Amoeba";
@@ -80,5 +82,25 @@ public class GameWindow extends JFrame {
 
 	public void closeWindow() {
 		dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("pressed");
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+			closeWindow();
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
