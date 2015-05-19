@@ -1,4 +1,5 @@
 
+import java.awt.BorderLayout;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -38,24 +39,29 @@ public class DatabaseManager extends JFrame {
             //if successful, read response from server
             client.readResponse();
 
-        } catch (UnknownHostException e) {
-        	JFrame err = new JFrame();
-        	JPanel p = new JPanel();
-        	err.setTitle("Error!");
-    		err.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    		JLabel server = new JLabel("Host unknown. Cannot establish connection");
-            p.add(server);
-            err.add(p);
-    		err.setVisible(true);
-        } catch (IOException e) {
-        	JFrame err = new JFrame();
-        	JPanel p = new JPanel();
-        	err.setTitle("Error!");
-    		err.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    		JLabel server = new JLabel("Cannot establish connection. Server may not be up."+e.getMessage());
-            p.add(server);
-            err.add(p);
-    		err.setVisible(true);
-        }
+		} catch (UnknownHostException e) {
+			JFrame err = new JFrame();
+			JPanel p = new JPanel();
+			err.setTitle("Error!");
+			err.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			JLabel server = new JLabel(
+					"Host unknown. Cannot establish connection");
+			p.add(server);
+			err.add(p, BorderLayout.CENTER);
+			err.pack();
+			err.setVisible(true);
+		} catch (IOException e) {
+			JFrame err = new JFrame();
+			JPanel p = new JPanel();
+			err.setTitle("Error!");
+			err.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			JLabel server = new JLabel(
+					"<html>Cannot establish connection; the server may not be up at this time.<br>The following was received from the server:<br><br>"
+							+ e.getMessage());
+			p.add(server);
+			err.add(p, BorderLayout.CENTER);
+			err.pack();
+			err.setVisible(true);
+		}
 	}
 }
