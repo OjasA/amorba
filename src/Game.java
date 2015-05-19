@@ -14,7 +14,7 @@ import javax.swing.*;
 
 
 
-public class Game extends JPanel implements KeyListener{
+public class Game extends AbstractDraw implements KeyListener{
 	private String name;
 	private GameWindow window;
 	public Game(String theName, GameWindow theWindow)
@@ -46,6 +46,8 @@ public class Game extends JPanel implements KeyListener{
 			e.printStackTrace();
 		}
 	}
+	
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -61,6 +63,11 @@ public class Game extends JPanel implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void draw(Graphics2D g2d) {
+		g2d.fillRect(0, 0, 200, 200);
 		
 	}
 	

@@ -70,6 +70,8 @@ public class GameWindow extends JFrame{
 		
 	}
 	
+	
+	
 	public void closeWindow()
 	{
 		dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
