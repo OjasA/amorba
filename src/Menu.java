@@ -51,6 +51,14 @@ public class Menu extends JFrame{
 		
 		//Name text input field 
 		final JTextField field = new JTextField();
+		field.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER){
+					setVisible(false);
+					new GameWindow(field.getText());
+				}
+			}
+		});
 		field.setBounds(30, 150, 140, 25);
 		p.add(field);
 		field.setDocument(new JTextFieldLimit(15)); // limit input size to 15
