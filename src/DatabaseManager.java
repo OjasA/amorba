@@ -6,8 +6,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
  
-public class DatabaseManager {
+public class DatabaseManager extends JFrame {
 	private String hostname;
 	private int port;
 	Socket socketClient;
@@ -35,9 +39,23 @@ public class DatabaseManager {
             client.readResponse();
 
         } catch (UnknownHostException e) {
-            System.err.println("Host unknown. Cannot establish connection");
+        	JFrame err = new JFrame();
+        	JPanel p = new JPanel();
+        	err.setTitle("Error!");
+    		err.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    		JLabel server = new JLabel("Host unknown. Cannot establish connection");
+            p.add(server);
+            err.add(p);
+    		err.setVisible(true);
         } catch (IOException e) {
-            System.err.println("Cannot establish connection. Server may not be up."+e.getMessage());
+        	JFrame err = new JFrame();
+        	JPanel p = new JPanel();
+        	err.setTitle("Error!");
+    		err.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    		JLabel server = new JLabel("Cannot establish connection. Server may not be up."+e.getMessage());
+            p.add(server);
+            err.add(p);
+    		err.setVisible(true);
         }
 	}
 }
