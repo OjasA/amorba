@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Cell extends AbstractDraw {
+public class Cell{
 	private int radius;
 	private Point location;
 	private int xSpeed;
@@ -59,9 +59,4 @@ public class Cell extends AbstractDraw {
 		this.ySpeed = y;
 	}
 
-	@Override
-	public void draw(Graphics2D g2d) {
-		// TODO Auto-generated method stub
-		
-	}
 }

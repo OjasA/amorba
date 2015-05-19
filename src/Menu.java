@@ -62,7 +62,7 @@ public class Menu extends JFrame{
 			public void actionPerformed(ActionEvent e)
 			{
 				setVisible(false);
-				new Game(field.getText());
+				new GameWindow(field.getText());
 			}
 		});
 		p.add(join);

@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.*;
@@ -13,70 +14,44 @@ import javax.swing.*;
 
 
 
-public class Game extends JFrame implements KeyListener{
+public class Game extends JPanel implements KeyListener{
 	private String name;
-	public Game(String theName)
+	private GameWindow window;
+	public Game(String theName, GameWindow theWindow)
 	{
+		//get window this frame is being hosted in
+		window = theWindow;
+		
 		//start key listener
 		addKeyListener(this);
 		
-		//string parsing
-		if (theName.matches(" *"))
-		{
-			name = "Amoeba";
-		}
-		else
-		{
-			name = theName;	
-		}
-		//main setup
-		setTitle("Amorba");
-		setSize(800,600);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setVisible(true);
-		setExtendedState(MAXIMIZED_BOTH);
-		
-		//banner setup
-		BufferedImage img = null;
-		try {
-			img = ImageIO.read(new File("icons/amorbaicon-bmp-small.png")); // read image
-																			
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		setIconImage(img);
-		
-		//go back to menu when closing
-		addWindowListener(new WindowListener() {
-
+		//start game thread
+		Thread gameThread = new Thread() {
 			@Override
-			public void windowActivated(WindowEvent arg0) {}
-			@Override
-			public void windowClosed(WindowEvent arg0) {
-				if (name == "Amoeba")
-				name = "";
-				new Menu(name);
+			public void run() {
+				act();
 			}
-			@Override
-			public void windowClosing(WindowEvent arg0) {}
-			@Override
-			public void windowDeactivated(WindowEvent arg0) {}
-			@Override
-			public void windowDeiconified(WindowEvent arg0) {}
-			@Override
-			public void windowIconified(WindowEvent arg0) {}
-			@Override
-			public void windowOpened(WindowEvent arg0) {}
-		});
+		};
+		
 
 		
+	}
+	//main game tick
+	public void act()
+	{
+		try {
+			Thread.sleep(4);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println("pressed");
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
-			dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+			window.closeWindow();
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
@@ -88,4 +63,5 @@ public class Game extends JFrame implements KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
+	
 }
