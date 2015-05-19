@@ -12,27 +12,38 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class DatabaseManager extends JFrame {
+public class ConnectionManager extends JFrame {
 	private String hostname;
 	private int port;
 	Socket socketClient;
 
-	public DatabaseManager(String hostname, int port) {
+	public ConnectionManager(String hostname, int port) {
 		this.hostname = hostname;
 		this.port = port;
 	}
 
+	/**
+	 * Attempts to establish connection with a host.
+	 * 
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 */
 	public void connect() throws UnknownHostException, IOException {
 		socketClient = new Socket(hostname, port);
 	}
 
+	/**
+	 * Reads data from the host.
+	 * 
+	 * @throws IOException
+	 */
 	public void readResponse() throws IOException {
 		/* INSERT RESPONSE FROM SERVER */
 	}
 
 	public static void main(String arg[]) {
-		// Creating a SocketClient object
-		DatabaseManager client = new DatabaseManager("localhost", 9990);
+		// Creating a client object
+		ConnectionManager client = new ConnectionManager("localhost", 9990);
 		try {
 			// trying to establish connection to the server
 			client.connect();
