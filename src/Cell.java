@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Cell{
+public class Cell {
 	private int radius;
 	private Point location;
 	private int xSpeed;
@@ -15,14 +15,15 @@ public class Cell{
 		setXSpeed(0);
 		setYSpeed(0);
 	}
-	
-	public Cell(int theradius, Point theLocation, int xSpeed, int ySpeed, Color color) {
+
+	public Cell(int theradius, Point theLocation, int xSpeed, int ySpeed,
+			Color color) {
 		setRadius(theradius);
 		setLocation(theLocation);
 		setXSpeed(xSpeed);
 		setYSpeed(ySpeed);
 	}
-	
+
 	public int getRadius() {
 		return radius;
 	}
@@ -30,7 +31,7 @@ public class Cell{
 	public void setRadius(int radius) {
 		this.radius = radius;
 	}
-	
+
 	public void addRadius(int radius) {
 		this.radius += radius;
 	}
@@ -42,20 +43,20 @@ public class Cell{
 	public void setLocation(Point location) {
 		this.location = location;
 	}
-	
-	public int getXSpeed(){
+
+	public int getXSpeed() {
 		return xSpeed;
 	}
-	
-	public void setXSpeed(int x){
+
+	public void setXSpeed(int x) {
 		this.xSpeed = x;
 	}
-	
-	public int getYSpeed(){
+
+	public int getYSpeed() {
 		return ySpeed;
 	}
-	
-	public void setYSpeed(int y){
+
+	public void setYSpeed(int y) {
 		this.ySpeed = y;
 	}
 
