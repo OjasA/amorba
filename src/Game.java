@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,6 +18,7 @@ public class Game extends AbstractDraw implements KeyListener {
 	private String name;
 	private GameWindow window;
 	private boolean[] keys;
+	private Point position;
 	private Thread gameThread;
 
 	public Game(String theName, GameWindow theWindow) {
@@ -30,6 +33,15 @@ public class Game extends AbstractDraw implements KeyListener {
 		
 		//make Game panel focusable
 		setFocusable(true);
+		
+		//start mouse listener
+		addMouseMotionListener(new MouseAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e)
+			{
+				position = MouseInfo.getPointerInfo().getLocation();
+			}
+		});
 		
 		// start game thread
 		gameThread = new Thread() {
@@ -64,6 +76,11 @@ public class Game extends AbstractDraw implements KeyListener {
 		}
 		
 	}
+	
+	@Override
+	public void draw(Graphics2D g2d) {
+
+	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -83,10 +100,6 @@ public class Game extends AbstractDraw implements KeyListener {
 
 	}
 
-	@Override
-	public void draw(Graphics2D g2d) {
-		g2d.fillRect(0, 0, 200, 200);
-
-	}
+	
 
 }
