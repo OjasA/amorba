@@ -3,7 +3,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -78,9 +82,19 @@ public class Game extends AbstractDraw {
 	}
 
 	@Override
-	public void draw(Graphics2D g2d) {
+	public void draw(final Graphics2D g2d) {
 		Rectangle r = this.getBounds();
+		final Ellipsoid p = new Ellipsoid(this);
 		g2d.fillRect(0, 0, r.width, r.height); // draw dimensions according to frame size
+		p.draw(g2d);
+		addMouseMotionListener(new MouseAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				Point point = MouseInfo.getPointerInfo().getLocation();
+				p.move(g2d,point);
+				System.out.println("(" + point.getX() + "," + point.getY() + ")");
+			}
+		});
 	}
 
 }
