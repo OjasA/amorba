@@ -9,7 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
-public class GameWindow extends JFrame implements KeyListener {
+public class GameWindow extends JFrame {
 	private String name;
 
 	public GameWindow(String theName) {
@@ -20,8 +20,6 @@ public class GameWindow extends JFrame implements KeyListener {
 		} else {
 			name = theName;
 		}
-		
-		addKeyListener(this);
 
 		// main setup
 		setTitle("Amorba");
@@ -83,25 +81,5 @@ public class GameWindow extends JFrame implements KeyListener {
 
 	public void closeWindow() {
 		dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-	}
-
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE){
-			closeWindow();
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 }

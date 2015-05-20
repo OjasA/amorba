@@ -12,16 +12,13 @@ import java.awt.Window;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class Game extends AbstractDraw implements KeyListener {
+public class Game extends AbstractDraw {
 	private String name;
 	private GameWindow window;
 
 	public Game(String theName, GameWindow theWindow) {
 		// get window this frame is being hosted in
 		window = theWindow;
-
-		// start key listener
-		addKeyListener(this);
 
 		// start game thread
 		Thread gameThread = new Thread() {
@@ -31,6 +28,19 @@ public class Game extends AbstractDraw implements KeyListener {
 			}
 		};
 
+		// key binding stuff
+		int mapName = JComponent.WHEN_IN_FOCUSED_WINDOW;
+		InputMap imap = this.getInputMap(mapName);
+
+		KeyStroke esc = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
+		// KeyStroke a = KeyStroke.getKeyStroke('a');
+		KeyBinding bind = new KeyBinding(window);
+
+		imap.put(esc, "close");
+		ActionMap amap = this.getActionMap();
+		amap.put("close", bind);
+		
+		this.requestFocus();
 	}
 
 	// main game tick
@@ -41,26 +51,6 @@ public class Game extends AbstractDraw implements KeyListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("pressed");
-		if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
-			window.closeWindow();
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
