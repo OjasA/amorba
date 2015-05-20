@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -15,6 +16,7 @@ import javax.swing.*;
 public class Game extends AbstractDraw {
 	private String name;
 	private GameWindow window;
+	
 
 	public Game(String theName, GameWindow theWindow) {
 		// get window this frame is being hosted in
@@ -27,19 +29,41 @@ public class Game extends AbstractDraw {
 				act();
 			}
 		};
-
-		// key binding stuff
+		// set up key binding input and action maps
 		int mapName = JComponent.WHEN_IN_FOCUSED_WINDOW;
 		InputMap imap = this.getInputMap(mapName);
-
-		KeyStroke esc = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
-		// KeyStroke a = KeyStroke.getKeyStroke('a');
-		KeyBinding bind = new KeyBinding(window);
-
-		imap.put(esc, "close");
 		ActionMap amap = this.getActionMap();
-		amap.put("close", bind);
+
+		// map keys
+		// setup escape to close window
+		KeyStroke esc = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
+		imap.put(esc, "closeWindow");
+		amap.put("closeWindow", new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				window.closeWindow();
+			}
+		});
+
+		// setup F5 to attempt to manually refresh the connection
+		KeyStroke f5 = KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0);
+		imap.put(f5, "refreshConnection");
+		amap.put("refreshConnection", new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ConnectionManager.main(null);
+			}
+		});
 		
+		// black mode
+		KeyStroke black = KeyStroke.getKeyStroke(KeyEvent.VK_B, InputEvent.CTRL_MASK);
+		imap.put(black, "toBlack");
+		amap.put("toBlack", new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				window.toBlack();
+			}
+		});
 		this.requestFocus();
 	}
 
@@ -55,8 +79,8 @@ public class Game extends AbstractDraw {
 
 	@Override
 	public void draw(Graphics2D g2d) {
-		g2d.fillRect(0, 0, 200, 200);
-
+		Rectangle r = this.getBounds();
+		g2d.fillRect(0, 0, r.width, r.height); // draw dimensions according to frame size
 	}
 
 }

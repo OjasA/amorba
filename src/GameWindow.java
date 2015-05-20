@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
@@ -76,10 +77,17 @@ public class GameWindow extends JFrame {
 		});
 
 		setContentPane(new Game(name, this));
-
 	}
 
 	public void closeWindow() {
 		dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+	}
+	public void toBlack() {
+		if(!(this.getContentPane().getBackground().equals(Color.BLACK))){
+			getContentPane().setBackground(Color.BLACK);
+		}
+		else {
+			getContentPane().setBackground(Color.WHITE);
+		}
 	}
 }
