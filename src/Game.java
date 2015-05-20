@@ -15,44 +15,66 @@ import javax.swing.*;
 public class Game extends AbstractDraw implements KeyListener {
 	private String name;
 	private GameWindow window;
+	private boolean[] keys;
+	private Thread gameThread;
 
 	public Game(String theName, GameWindow theWindow) {
 		// get window this frame is being hosted in
 		window = theWindow;
 
+		//key tracker
+		keys = new boolean[525];
+		
 		// start key listener
 		addKeyListener(this);
-
+		
+		//make Game panel focusable
+		setFocusable(true);
+		
 		// start game thread
-		Thread gameThread = new Thread() {
+		gameThread = new Thread() {
 			@Override
 			public void run() {
 				act();
 			}
 		};
+		gameThread.start();
 
 	}
 
 	// main game tick
 	public void act() {
-		try {
-			Thread.sleep(4);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		boolean running  = true;
+		while(running)
+		{
+			//close window
+			if (keys[KeyEvent.VK_ESCAPE])
+			{
+				window.closeWindow();
+				running  = false;
+			}
+				
+			//tickrate
+			try {
+				Thread.sleep(4);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		keys[e.getKeyCode()] = true;
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-
+		keys[e.getKeyCode()] = false;
 	}
 
 	@Override
