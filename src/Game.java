@@ -84,7 +84,9 @@ public class Game extends AbstractDraw implements KeyListener {
 			}
 			
 			//send mouse info to server
-			s.setPointerLocation(position);
+			double deltaX = position.getX() - this.getWidth() / 2 / camSize;
+			double deltaY = position.getY() - this.getWidth() / 2 / camSize;
+			s.setDeltas(deltaX, deltaY);
 				
 			//repaint
 			repaint();
@@ -104,7 +106,6 @@ public class Game extends AbstractDraw implements KeyListener {
 	public void draw(Graphics2D g2d) {
 
 		//center viewport on player
-		
 		camSize = player.getRadius() / 5.0;
 		camX = (int) (this.getWidth() / 2 / camSize - player.getLocation().getX());
 		camY = (int) (this.getHeight() / 2 / camSize - player.getLocation().getY());

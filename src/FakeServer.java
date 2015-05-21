@@ -5,7 +5,7 @@ import java.awt.Point;
 
 
 public class FakeServer {
-private Point pointerLocation;
+private double deltaX, deltaY;
 private Game game;
 private Thread serverThread;
 
@@ -13,7 +13,7 @@ private Player player; //in the real server there will be a list of all the cell
 	
 	public FakeServer(Point location, Game g)
 	{
-		pointerLocation = location;
+		deltaX = deltaY = 0;
 		game = g;
 		player = new Player(15, new Point(100, 100));
 		
@@ -26,9 +26,10 @@ private Player player; //in the real server there will be a list of all the cell
 		serverThread.start();
 	}
 	
-	public void setPointerLocation(Point location)
+	public void setDeltas(double dx, double dy)
 	{
-		pointerLocation = location;
+		deltaX = dx;
+		deltaY = dy;
 	}
 	
 	public void act()
@@ -52,9 +53,6 @@ private Player player; //in the real server there will be a list of all the cell
 	public Point calculateNewLocation()
 	{
 		double speedMultiplier = 2.0 / player.getRadius();
-
-		int deltaX = (int) (pointerLocation.getX() - player.getLocation().getX());
-		int deltaY = (int) (pointerLocation.getY() - player.getLocation().getY());
 		double direction = Math.atan(deltaY / deltaX);
 		if (deltaX < 0)
 			direction += Math.PI;
