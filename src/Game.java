@@ -1,3 +1,4 @@
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -111,13 +112,14 @@ public class Game extends AbstractDraw implements KeyListener {
 		g2d.translate(camX, camY);
 		
 		
-		
-		player.moveAndDraw(g2d, newLocation);
+		drawGrid(g2d);
+		player.moveAndDraw(g2d);
 	}
 	
 	public void drawGrid(Graphics2D g2d)
 	{
 		g2d.setColor(Color.BLACK);
+		g2d.setStroke(new BasicStroke(0.3f));
 		
 		g2d.drawLine(0, 0, BOARD_SIZE, 0);
 		g2d.drawLine(0, 0, 0, BOARD_SIZE);
@@ -133,6 +135,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		{
 			g2d.drawLine(0, i * 10, BOARD_SIZE, i * 10);
 		}
+		
 	}
 
 	@Override
