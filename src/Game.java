@@ -29,6 +29,8 @@ public class Game extends AbstractDraw implements KeyListener {
 	private int camX;
 	private int camY;
 	private double camSize;
+	
+	public static final int BOARD_SIZE = 1500;
 
 	public Game(String theName, GameWindow theWindow) {
 		
@@ -111,6 +113,26 @@ public class Game extends AbstractDraw implements KeyListener {
 		
 		
 		player.moveAndDraw(g2d, newLocation);
+	}
+	
+	public void drawGrid(Graphics2D g2d)
+	{
+		g2d.setColor(Color.BLACK);
+		
+		g2d.drawLine(0, 0, BOARD_SIZE, 0);
+		g2d.drawLine(0, 0, 0, BOARD_SIZE);
+		g2d.drawLine(0, BOARD_SIZE, BOARD_SIZE, BOARD_SIZE);
+		g2d.drawLine(BOARD_SIZE, BOARD_SIZE, BOARD_SIZE, 0);
+		
+		g2d.setColor(Color.LIGHT_GRAY);
+		for (int i = 0; i < BOARD_SIZE / 10; i++)
+		{
+			g2d.drawLine(i * 10, 0, i * 10, BOARD_SIZE);
+		}
+		for (int i = 0; i < BOARD_SIZE / 10; i++)
+		{
+			g2d.drawLine(0, i * 10, BOARD_SIZE, i * 10);
+		}
 	}
 
 	@Override
