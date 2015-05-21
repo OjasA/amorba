@@ -18,17 +18,19 @@ public class Game extends AbstractDraw implements KeyListener {
 	private String name;
 	private GameWindow window;
 	private boolean[] keys;
-	private Point position;
+	private Point position; //mouse position
 	private Thread gameThread;
 	
 	private Player player;
 	private Point newLocation;
+	private FakeServer s;
 	
 
 	public Game(String theName, GameWindow theWindow) {
 		//this will eventually come from server
-		player = new Player(50, new Point(100, 100));
-		newLocation = new Point(100, 100);
+		
+		position = new Point(0, 0);
+		s = new FakeServer(position, this);
 		
 		// get window this frame is being hosted in
 		window = theWindow;
@@ -51,7 +53,7 @@ public class Game extends AbstractDraw implements KeyListener {
 			}
 		});
 		
-		// start game thread
+		// start draw thread
 		gameThread = new Thread() {
 			@Override
 			public void run() {
@@ -74,11 +76,13 @@ public class Game extends AbstractDraw implements KeyListener {
 				running  = false;
 			}
 			
+			//send mouse info to server
+			s.setPointerLocation(position);
 				
 			//repaint
 			repaint();
 			
-			//tickrate
+			//drawing tickrate
 			try {
 				Thread.sleep(4);
 			} catch (InterruptedException e) {
@@ -110,6 +114,16 @@ public class Game extends AbstractDraw implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public void setNewLocation(Point l)
+	{
+		newLocation = l;
+	}
+	
+	public void setPlayer(Player p)
+	{
+		player = p;
 	}
 
 	
