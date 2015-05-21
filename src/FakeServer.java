@@ -51,6 +51,7 @@ private Player player; //in the real server there will be a list of all the cell
 	
 	public Point calculateNewLocation()
 	{
+		
 		return new Point(100, 100); //temporary code
 	}
 	
