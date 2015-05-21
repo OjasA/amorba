@@ -8,12 +8,12 @@ public class Player extends Cell {
 		super(theRadius, theLocation);
 	}
 	
-	public void moveAndDraw(Graphics2D g2d, Point destination)
+	public void moveAndDraw(Graphics2D g2d)
 	{
 		g2d.setColor(ConfigVariables.backgroundColor); //paints w/ background color to erase
 		g2d.fillOval((int) super.getLocation().getX() - super.getRadius(), (int) super.getLocation().getY() - super.getRadius(), super.getRadius() * 2, super.getRadius() * 2); //erases current oval
 		
-		super.setLocation(destination);
+		super.setLocation(super.getNewLocation());
 		
 		g2d.setColor(super.getColor());
 		g2d.fillRect((int) super.getLocation().getX(), (int) super.getLocation().getY(), 1, 1);

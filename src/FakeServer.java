@@ -36,8 +36,8 @@ private Player player; //in the real server there will be a list of all the cell
 		boolean running = true;
 		while (running)
 		{
+			player.setNewLocation(calculateNewLocation());
 			game.setPlayer(player);
-			game.setNewLocation(calculateNewLocation());
 			
 			//server tickrate
 			try {
@@ -51,7 +51,8 @@ private Player player; //in the real server there will be a list of all the cell
 	
 	public Point calculateNewLocation()
 	{
-		double speedMultiplier = 1.0 / player.getRadius();
+		double speedMultiplier = 2.0 / player.getRadius();
+
 		int deltaX = (int) (pointerLocation.getX() - player.getLocation().getX());
 		int deltaY = (int) (pointerLocation.getY() - player.getLocation().getY());
 		double direction = Math.atan(deltaY / deltaX);
@@ -67,7 +68,8 @@ private Player player; //in the real server there will be a list of all the cell
 		double newDeltaX = (Math.cos(direction) * newDelta);
 		double newDeltaY = (Math.sin(direction) * newDelta);
 		
-		return new Point((int)newDeltaX, (int)newDeltaY); //temporary code
+		Point ans = new Point((int)newDeltaX, (int)newDeltaY);
+		return ans;
 	}
 	
 

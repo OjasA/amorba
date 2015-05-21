@@ -5,6 +5,7 @@ import java.awt.Point;
 public class Cell {
 	private int radius;
 	private Point location;
+	private Point newLocation;
 	private Color color;
 
 	public Cell(int theradius, Point theLocation) {
@@ -46,4 +47,13 @@ public class Cell {
 		return color;
 	}
 
+	public void setNewLocation(Point l)
+	{
+		newLocation = l;
+	}
+	
+	public Point getNewLocation()
+	{
+		return newLocation;
+	}
 }
