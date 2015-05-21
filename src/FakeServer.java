@@ -15,7 +15,7 @@ private Player player; //in the real server there will be a list of all the cell
 	{
 		pointerLocation = location;
 		game = g;
-		player = new Player(50, new Point(100, 100));
+		player = new Player(20, new Point(100, 100));
 		
 		serverThread = new Thread() {
 			@Override

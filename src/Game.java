@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,6 +26,9 @@ public class Game extends AbstractDraw implements KeyListener {
 	private Point newLocation;
 	private FakeServer s;
 	
+	private int camX;
+	private int camY;
+	private double camSize;
 
 	public Game(String theName, GameWindow theWindow) {
 		//this will eventually come from server
@@ -95,6 +99,17 @@ public class Game extends AbstractDraw implements KeyListener {
 	
 	@Override
 	public void draw(Graphics2D g2d) {
+
+		//center viewport on player
+		Rectangle r = this.getBounds();
+		camSize = player.getRadius() / 5.0;
+		camX = (int) (r.getCenterX() / camSize - player.getLocation().getX());
+		camY = (int) (r.getCenterY() /camSize - player.getLocation().getY());
+		g2d.scale(camSize, camSize);
+		g2d.translate(camX, camY);
+		
+		
+		
 		player.moveAndDraw(g2d, newLocation);
 	}
 
