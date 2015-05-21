@@ -20,8 +20,16 @@ public class Game extends AbstractDraw implements KeyListener {
 	private boolean[] keys;
 	private Point position;
 	private Thread gameThread;
+	
+	private Player player;
+	private Point newLocation;
+	
 
 	public Game(String theName, GameWindow theWindow) {
+		//this will eventually come from server
+		player = new Player(50, new Point(100, 100));
+		newLocation = new Point(100, 100);
+		
 		// get window this frame is being hosted in
 		window = theWindow;
 
@@ -65,7 +73,11 @@ public class Game extends AbstractDraw implements KeyListener {
 				window.closeWindow();
 				running  = false;
 			}
+			
 				
+			//repaint
+			repaint();
+			
 			//tickrate
 			try {
 				Thread.sleep(4);
@@ -79,7 +91,7 @@ public class Game extends AbstractDraw implements KeyListener {
 	
 	@Override
 	public void draw(Graphics2D g2d) {
-
+		player.moveAndDraw(g2d, newLocation);
 	}
 
 	@Override

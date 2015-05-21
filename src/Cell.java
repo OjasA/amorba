@@ -59,5 +59,13 @@ public class Cell {
 	public void setYSpeed(int y) {
 		this.ySpeed = y;
 	}
+	
+	public void setColor(Color col) {
+		color = col;
+	}
+	
+	public Color getColor() {
+		return color;
+	}
 
 }
