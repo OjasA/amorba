@@ -31,8 +31,8 @@ public class Game extends AbstractDraw implements KeyListener {
 	private double camSize;
 
 	public Game(String theName, GameWindow theWindow) {
-		//this will eventually come from server
 		
+		//this will eventually come from server
 		position = new Point(0, 0);
 		s = new FakeServer(position, this);
 		
@@ -101,10 +101,10 @@ public class Game extends AbstractDraw implements KeyListener {
 	public void draw(Graphics2D g2d) {
 
 		//center viewport on player
-		Rectangle r = this.getBounds();
+		
 		camSize = player.getRadius() / 5.0;
-		camX = (int) (r.getCenterX() / camSize - player.getLocation().getX());
-		camY = (int) (r.getCenterY() /camSize - player.getLocation().getY());
+		camX = (int) (this.getWidth() / 2 / camSize - player.getLocation().getX());
+		camY = (int) (this.getHeight() / 2 / camSize - player.getLocation().getY());
 		g2d.scale(camSize, camSize);
 		g2d.translate(camX, camY);
 		
