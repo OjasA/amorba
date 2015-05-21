@@ -38,22 +38,20 @@ public class Cell {
 	public void setLocation(Point location) {
 		this.location = location;
 	}
-	
+
 	public void setColor(Color col) {
 		color = col;
 	}
-	
+
 	public Color getColor() {
 		return color;
 	}
 
-	public void setNewLocation(Point l)
-	{
+	public void setNewLocation(Point l) {
 		newLocation = l;
 	}
-	
-	public Point getNewLocation()
-	{
+
+	public Point getNewLocation() {
 		return newLocation;
 	}
 }

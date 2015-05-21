@@ -9,12 +9,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
-public class GameWindow extends JFrame implements KeyListener{
+public class GameWindow extends JFrame implements KeyListener {
 	private String name;
 
 	public GameWindow(String theName) {
 		addKeyListener(this);
-		
+
 		// string parsing
 		if (theName.matches(" *")) {
 			name = "Amoeba";
@@ -92,12 +92,12 @@ public class GameWindow extends JFrame implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
