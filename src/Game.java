@@ -84,6 +84,7 @@ public class Game extends AbstractDraw implements KeyListener {
 			}
 			
 			//send mouse info to server
+			// SwingUtilities.convertPointFromScreen(position,this);
 			double deltaX = position.getX() - this.getWidth() / 2 / camSize;
 			double deltaY = position.getY() - this.getWidth() / 2 / camSize;
 			s.setDeltas(deltaX, deltaY);
