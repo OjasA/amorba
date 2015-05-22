@@ -30,14 +30,14 @@ public class Game extends AbstractDraw implements KeyListener {
 	private int camY;
 	private double camSize;
 	
-	public static final int BOARD_SIZE = 1500;
+	public static final int BOARD_SIZE = 30000;
 
 	public Game(String theName, GameWindow theWindow) {
 		
 		//this will eventually come from server
 		position = new Point(0, 0);
 		s = new FakeServer(position, this);
-		player = new Player(10, new Point(100, 100));
+		player = new Player(15, new Point(100, 100));
 		player.setNewLocation(new Point(100, 100));
 		
 		// get window this frame is being hosted in
@@ -115,8 +115,8 @@ public class Game extends AbstractDraw implements KeyListener {
 		else if(player.getRadius() > 100){
 			camSize = 2.9 - Math.pow(1.006, (player.getRadius()));
 		}
-		if(camSize < .5){
-			camSize = 0.5;
+		if(camSize < .03){
+			camSize = .03;
 		}
 		camX = (int) (this.getWidth() / 2 / camSize - player.getLocation().getX());
 		camY = (int) (this.getHeight() / 2 / camSize - player.getLocation().getY());
@@ -172,6 +172,10 @@ public class Game extends AbstractDraw implements KeyListener {
 	public void setPlayer(Player p)
 	{
 		player = p;
+	}
+
+	public static int getBoardSize() {
+		return BOARD_SIZE;
 	}
 
 	

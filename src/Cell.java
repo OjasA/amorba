@@ -49,6 +49,18 @@ public class Cell {
 
 	public void setNewLocation(Point l) {
 		newLocation = l;
+		if (l.getX() < 0) {
+			newLocation.setLocation(0, newLocation.getY());
+		}
+		if (l.getY() < 0) {
+			newLocation.setLocation(newLocation.getX(), 0);
+		}
+		if (l.getX() > Game.getBoardSize()) {
+			newLocation.setLocation(Game.getBoardSize(), newLocation.getY());
+		}
+		if (l.getY() > Game.getBoardSize()) {
+			newLocation.setLocation(newLocation.getX(), Game.getBoardSize());
+		}
 	}
 
 	public Point getNewLocation() {
