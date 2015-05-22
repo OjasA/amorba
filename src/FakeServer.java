@@ -79,10 +79,10 @@ private Player player; //in the real server there will be a list of all the cell
 		if(newDeltaY < 0){
 			newDeltaY = 0;
 		}
-
-		Point ans = new Point((int)newDeltaX, (int)newDeltaY);
+		
+		Point ans = new Point((int)newDeltaX + (int)position.getX(), (int)newDeltaY + (int)position.getY());
 		//return ans;
-		return position;
+		return ans;
 	}
 	
 	public Player getServerPlayer()

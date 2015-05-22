@@ -57,7 +57,7 @@ public class Game extends AbstractDraw implements KeyListener {
 			@Override
 			public void mouseMoved(MouseEvent e)
 			{
-				position = MouseInfo.getPointerInfo().getLocation();
+				position = e.getPoint();
 			}
 		});
 		
@@ -86,7 +86,10 @@ public class Game extends AbstractDraw implements KeyListener {
 				running  = false;
 			}
 			//send mouse info to server
-			s.setPosition(position);
+			Point loc = player.getLocation();
+			Point boardPosition = new Point(loc.x + (position.x + player.getRadius() - window.getWidth()/2)/40, loc.y + (position.y + player.getRadius() - window.getHeight()/2)/40);
+			//System.out.println("                                                   " + boardPosition);
+			s.setPosition(boardPosition);
 				
 			//repaint
 			repaint();
