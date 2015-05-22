@@ -8,6 +8,7 @@ public class FakeServer {
 private double deltaX, deltaY;
 private Game game;
 private Thread serverThread;
+private Point position;
 
 private Player player; //in the real server there will be a list of all the cells
 	
@@ -16,6 +17,8 @@ private Player player; //in the real server there will be a list of all the cell
 		deltaX = deltaY = 0;
 		game = g;
 		player = new Player(15, new Point(100, 100));
+		player.setNewLocation(player.getLocation());
+		position = new Point(0, 0);
 		
 		serverThread = new Thread() {
 			@Override
@@ -38,6 +41,7 @@ private Player player; //in the real server there will be a list of all the cell
 		while (running)
 		{
 			player.setNewLocation(calculateNewLocation());
+			System.out.println(player.getNewLocation());
 			game.setPlayer(player);
 			
 			//server tickrate
@@ -54,6 +58,9 @@ private Player player; //in the real server there will be a list of all the cell
 	{
 		double speedMultiplier = 2.0 / player.getRadius();
 		double direction = Math.atan(deltaY / deltaX);
+		System.out.println(player.getLocation() + " " + player.getNewLocation());
+		deltaX = position.getX() - player.getLocation().getX();
+		deltaY = position.getY() - player.getLocation().getY();
 		if (deltaX < 0)
 			direction += Math.PI;
 		double delta = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
@@ -72,8 +79,20 @@ private Player player; //in the real server there will be a list of all the cell
 		if(newDeltaY < 0){
 			newDeltaY = 0;
 		}
+
 		Point ans = new Point((int)newDeltaX, (int)newDeltaY);
-		return ans;
+		//return ans;
+		return position;
+	}
+	
+	public Player getServerPlayer()
+	{
+		return player;
+	}
+	
+	public void setPosition(Point p)
+	{
+		position = p;
 	}
 	
 

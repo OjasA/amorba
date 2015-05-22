@@ -14,9 +14,9 @@ public class Player extends Cell {
 		g2d.fillOval((int) super.getLocation().getX() - super.getRadius(), (int) super.getLocation().getY() - super.getRadius(), super.getRadius() * 2, super.getRadius() * 2); //erases current oval
 		
 		super.setLocation(super.getNewLocation());
+		super.setNewLocation(super.getLocation());
 		
 		g2d.setColor(super.getColor());
-		g2d.fillRect((int) super.getLocation().getX(), (int) super.getLocation().getY(), 1, 1);
 		g2d.fillOval((int) super.getLocation().getX() - super.getRadius(), (int) super.getLocation().getY() - super.getRadius(), super.getRadius() * 2, super.getRadius() * 2); //draws new oval
 	}
 }

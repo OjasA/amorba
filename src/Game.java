@@ -24,7 +24,6 @@ public class Game extends AbstractDraw implements KeyListener {
 	private Thread gameThread;
 	
 	private Player player;
-	private Point newLocation;
 	private FakeServer s;
 	
 	private int camX;
@@ -38,6 +37,8 @@ public class Game extends AbstractDraw implements KeyListener {
 		//this will eventually come from server
 		position = new Point(0, 0);
 		s = new FakeServer(position, this);
+		player = new Player(10, new Point(100, 100));
+		player.setNewLocation(new Point(100, 100));
 		
 		// get window this frame is being hosted in
 		window = theWindow;
@@ -76,25 +77,23 @@ public class Game extends AbstractDraw implements KeyListener {
 		boolean running  = true;
 		while(running)
 		{
+
+			
 			//close window
 			if (keys[KeyEvent.VK_ESCAPE])
 			{
 				window.closeWindow();
 				running  = false;
 			}
-			
 			//send mouse info to server
-			// SwingUtilities.convertPointFromScreen(position,this);
-			double deltaX = position.getX() - this.getWidth() / 2 / camSize;
-			double deltaY = position.getY() - this.getWidth() / 2 / camSize;
-			s.setDeltas(deltaX, deltaY);
+			s.setPosition(position);
 				
 			//repaint
 			repaint();
 			
 			//drawing tickrate
 			try {
-				Thread.sleep(4);
+				Thread.sleep(1);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -166,10 +165,6 @@ public class Game extends AbstractDraw implements KeyListener {
 
 	}
 	
-	public void setNewLocation(Point l)
-	{
-		newLocation = l;
-	}
 	
 	public void setPlayer(Player p)
 	{
