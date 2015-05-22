@@ -113,6 +113,9 @@ public class Game extends AbstractDraw implements KeyListener {
 		else if(player.getRadius() > 100){
 			camSize = 2.9 - Math.pow(1.006, (player.getRadius()));
 		}
+		if(camSize < .5){
+			camSize = 0.5;
+		}
 		camX = (int) (this.getWidth() / 2 / camSize - player.getLocation().getX());
 		camY = (int) (this.getHeight() / 2 / camSize - player.getLocation().getY());
 		g2d.scale(camSize, camSize);
