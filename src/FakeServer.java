@@ -66,6 +66,12 @@ private Player player; //in the real server there will be a list of all the cell
 		double newDeltaX = (Math.cos(direction) * newDelta);
 		double newDeltaY = (Math.sin(direction) * newDelta);
 		
+		if(newDeltaX < 0){
+			newDeltaX = 0;
+		}
+		if(newDeltaY < 0){
+			newDeltaY = 0;
+		}
 		Point ans = new Point((int)newDeltaX, (int)newDeltaY);
 		return ans;
 	}
