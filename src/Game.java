@@ -108,8 +108,8 @@ public class Game extends AbstractDraw implements KeyListener {
 	@Override
 	public void draw(Graphics2D g2d) {
 		g2d.setColor(Color.BLACK);
-		g2d.fillRect((int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.25), (int)((this.getBounds().getWidth()*0.25)*0.2));
-		Rectangle scoreRect = new Rectangle((int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.25), (int)((this.getBounds().getWidth()*0.25)*0.2));
+		g2d.fillRect((int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.25), (int)((this.getBounds().getHeight()*0.06)));
+		Rectangle scoreRect = new Rectangle((int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.25), (int)((this.getBounds().getHeight()*0.06)));
 		g2d.setColor(Color.WHITE);
 		g2d.drawString("Score: ",30,(int)scoreRect.getCenterY());
 		g2d.drawString(Integer.toString(player.getRadius()),70,(int)scoreRect.getCenterY());
