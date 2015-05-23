@@ -1,6 +1,7 @@
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -78,7 +79,6 @@ public class Game extends AbstractDraw implements KeyListener {
 		while(running)
 		{
 
-			
 			//close window
 			if (keys[KeyEvent.VK_ESCAPE])
 			{
@@ -107,13 +107,25 @@ public class Game extends AbstractDraw implements KeyListener {
 	
 	@Override
 	public void draw(Graphics2D g2d) {
-
+		g2d.setColor(Color.BLACK);
+		g2d.fillRect((int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.25), (int)((this.getBounds().getWidth()*0.25)*0.2));
+		Rectangle scoreRect = new Rectangle((int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.25), (int)((this.getBounds().getWidth()*0.25)*0.2));
+		g2d.setColor(Color.WHITE);
+		g2d.drawString("Score: ",30,(int)scoreRect.getCenterY());
+		g2d.drawString(Integer.toString(player.getRadius()),70,(int)scoreRect.getCenterY());
+	
 		//center viewport on player
 		if(player.getRadius() <= 100){
 			camSize = 3.3 - Math.pow(1.008, player.getRadius());
 		}
-		else if(player.getRadius() > 100){
-			camSize = 2.9 - Math.pow(1.006, (player.getRadius()));
+		else if(player.getRadius() > 350){
+			camSize = 1.46 - Math.pow(1.0002, (player.getRadius()));
+		}
+		else if(player.getRadius() > 140 && player.getRadius() <= 350){
+			camSize = 1.8 - Math.pow(1.001, (player.getRadius()));
+		}
+		else if(player.getRadius() > 100 && player.getRadius() <= 140){
+			camSize = 2.7 - Math.pow(1.005, (player.getRadius()));
 		}
 		if(camSize < .03){
 			camSize = .03;
