@@ -1,4 +1,5 @@
 import java.awt.Point;
+import java.util.ArrayList;
 
 //This class is for preliminary testing purposes only.
 //Some of this code can be eventually moved to the real server.
@@ -11,10 +12,15 @@ public class FakeServer {
 
 	private Player player; // in the real server there will be a list of all the
 							// cells
-
+	private ArrayList<Cell> food = new ArrayList<Cell>();
 	public FakeServer(Point location, Game g) {
 		deltaX = deltaY = 0;
 		game = g;
+		for(int c = 0; c < 3000; c++){
+			Cell tempFood = new Cell(5,(new Point((int)(Math.random()*5000), (int)(Math.random()*5000))));
+			tempFood.generateColor();
+			food.add(tempFood);
+		}
 		player = new Player(15, new Point(100, 100));
 		player.generateColor();
 		player.setNewLocation(player.getLocation());
@@ -38,6 +44,7 @@ public class FakeServer {
 		boolean running = true;
 		while (running) {
 			player.setNewLocation(calculateNewLocation());
+			checkFood();
 			// System.out.println(player.getNewLocation());
 			game.setPlayer(player);
 
@@ -83,6 +90,22 @@ public class FakeServer {
 		// return ans;
 		return ans;
 	}
+	
+	public void checkFood() {
+		for(int c = 0; c < food.size(); c++){
+			Point locFood = food.get(c).getLocation();
+			double collisionCheck = Math.pow(((food.get(c).getRadius() + player.getRadius())),2);
+			double xDiff = Math.pow(((food.get(c).getLocation().getX() - player.getLocation().getX())),2);
+			double yDiff = Math.pow(((food.get(c).getLocation().getY() - player.getLocation().getY())),2);
+			if((xDiff + yDiff) <= collisionCheck){
+				player.addRadius(1);
+				food.remove(c);
+				Cell tempFood = new Cell(5,(new Point((int)(Math.random()*5000), (int)(Math.random()*5000))));
+				tempFood.generateColor();
+				food.add(tempFood);
+			}
+		}
+	}
 
 	public Player getServerPlayer() {
 		return player;
@@ -90,6 +113,14 @@ public class FakeServer {
 
 	public void setPosition(Point p) {
 		position = p;
+	}
+
+	public ArrayList<Cell> getFood() {
+		return food;
+	}
+
+	public void setFood(ArrayList<Cell> food) {
+		this.food = food;
 	}
 
 }

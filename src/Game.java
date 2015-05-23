@@ -12,6 +12,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.Window;
 
 import javax.imageio.ImageIO;
@@ -27,12 +28,13 @@ public class Game extends AbstractDraw implements KeyListener {
 	private Player player;
 	private FakeServer s;
 	
+	
 	private int camX;
 	private int camY;
 	private double camSize;
 	
-	public static final int BOARD_SIZE = 30000;
-
+	public static final int BOARD_SIZE = 5000;
+	
 	public Game(String theName, GameWindow theWindow) {
 		
 		//this will eventually come from server
@@ -40,7 +42,6 @@ public class Game extends AbstractDraw implements KeyListener {
 		s = new FakeServer(position, this);
 		player = new Player(15, new Point(100, 100));
 		player.setNewLocation(new Point(100, 100));
-		
 		// get window this frame is being hosted in
 		window = theWindow;
 
@@ -159,7 +160,10 @@ public class Game extends AbstractDraw implements KeyListener {
 		{
 			g2d.drawLine(0, i * 10, BOARD_SIZE, i * 10);
 		}
-		
+		for(Cell f : s.getFood()){
+			g2d.setColor(f.getColor());
+			g2d.fillOval((int)(f.getLocation().getX()), (int)(f.getLocation().getY()), 8,8);
+		}
 	}
 
 	@Override

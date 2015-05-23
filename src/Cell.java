@@ -12,10 +12,16 @@ public class Cell {
 		setLocation(theLocation);
 	}
 
-	public Cell(int theradius, Point theLocation, int xSpeed, int ySpeed,
-			Color color) {
+	public Cell(int theradius, Point theLocation, Color color) {
 		setRadius(theradius);
 		setLocation(theLocation);
+		setColor(color);
+	}
+
+	public Cell(int i, Point theLocation, int xSpeed, int ySpeed, Color col) {
+		setRadius(i);
+		setLocation(theLocation);
+		setColor(col);
 	}
 
 	public int getRadius() {
