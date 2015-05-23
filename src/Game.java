@@ -138,7 +138,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		g2d.drawLine(0, BOARD_SIZE, BOARD_SIZE, BOARD_SIZE);
 		g2d.drawLine(BOARD_SIZE, BOARD_SIZE, BOARD_SIZE, 0);
 		
-		g2d.setColor(Color.LIGHT_GRAY);
+		g2d.setColor(Color.DARK_GRAY);
 		for (int i = 0; i < BOARD_SIZE / 10; i++)
 		{
 			g2d.drawLine(i * 10, 0, i * 10, BOARD_SIZE);

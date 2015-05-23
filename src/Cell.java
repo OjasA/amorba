@@ -45,6 +45,13 @@ public class Cell {
 	public Color getColor() {
 		return color;
 	}
+	public void generateColor() {
+		float red = (float) Math.random();
+		float green = (float) Math.random();
+		float blue = (float) Math.random();
+		Color rgb = new Color(red,green,blue);
+		color = rgb;
+	}
 	/**
 	 * Sets a new position for the cell according to argument Point l
 	 * @param l The new location of the cell.

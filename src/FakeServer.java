@@ -16,6 +16,7 @@ public class FakeServer {
 		deltaX = deltaY = 0;
 		game = g;
 		player = new Player(15, new Point(100, 100));
+		player.generateColor();
 		player.setNewLocation(player.getLocation());
 		position = new Point(0, 0);
 

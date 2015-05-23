@@ -12,7 +12,7 @@ public class ConfigVariables {
 	/**
 	 * Color of the background for the client.
 	 */
-	public static Color backgroundColor = Color.gray;
+	public static Color backgroundColor = new Color((float)0.1,(float)0.1,(float)0.1);
 
 	/**
 	 * The name of the player

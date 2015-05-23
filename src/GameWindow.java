@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
@@ -77,6 +78,7 @@ public class GameWindow extends JFrame implements KeyListener {
 		});
 
 		setContentPane(new Game(name, this));
+		getContentPane().setBackground(ConfigVariables.backgroundColor);
 
 	}
 
