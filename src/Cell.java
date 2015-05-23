@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.Point;
 
 public class Cell {
@@ -46,7 +45,10 @@ public class Cell {
 	public Color getColor() {
 		return color;
 	}
-
+	/**
+	 * Sets a new position for the cell according to argument Point l
+	 * @param l The new location of the cell.
+	 */
 	public void setNewLocation(Point l) {
 		newLocation = l;
 		if (l.getX() < 0) {

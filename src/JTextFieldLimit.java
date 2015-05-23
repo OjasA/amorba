@@ -1,8 +1,4 @@
 /* Credit http://www.java2s.com/Tutorial/Java/0240__Swing/LimitJTextFieldinputtoamaximumlength.htm */
-import java.awt.FlowLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
