@@ -38,7 +38,7 @@ public class FakeServer {
 		boolean running = true;
 		while (running) {
 			player.setNewLocation(calculateNewLocation());
-			System.out.println(player.getNewLocation());
+			// System.out.println(player.getNewLocation());
 			game.setPlayer(player);
 
 			// server tickrate
@@ -54,8 +54,10 @@ public class FakeServer {
 	public Point calculateNewLocation() {
 		double speedMultiplier = 2.0 / player.getRadius();
 		double direction = Math.atan(deltaY / deltaX);
+		/*
 		System.out
 				.println(player.getLocation() + " " + player.getNewLocation());
+		*/
 		deltaX = position.getX() - player.getLocation().getX();
 		deltaY = position.getY() - player.getLocation().getY();
 		if (deltaX < 0)
