@@ -40,7 +40,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		//this will eventually come from server
 		position = new Point(0, 0);
 		s = new FakeServer(position, this);
-		player = new Player(15, new Point(100, 100));
+		player = new Player(15, new Point((int)(Math.random() * 5000), (int)(Math.random() * 5000)));
 		player.setNewLocation(new Point(100, 100));
 		// get window this frame is being hosted in
 		window = theWindow;
