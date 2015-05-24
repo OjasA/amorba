@@ -16,12 +16,12 @@ public class FakeServer {
 	public FakeServer(Point location, Game g) {
 		deltaX = deltaY = 0;
 		game = g;
-		for(int c = 0; c < 3000; c++){
+		for(int c = 0; c < 2500; c++){
 			Cell tempFood = new Cell(5,(new Point((int)(Math.random()*5000), (int)(Math.random()*5000))));
 			tempFood.generateColor();
 			food.add(tempFood);
 		}
-		player = new Player(15, new Point(100, 100));
+		player = new Player(15, new Point((int)(Math.random() * 5000), (int)(Math.random() * 5000)));
 		player.generateColor();
 		player.setNewLocation(player.getLocation());
 		position = new Point(0, 0);

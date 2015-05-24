@@ -71,7 +71,8 @@ public class Menu extends JFrame {
 			}
 		});
 		p.add(join);
-
+		
+		// settings button
 		JButton settings = new JButton("Settings");
 		settings.setBounds(50, 270, 100, 30);
 		settings.addActionListener(new ActionListener() {
