@@ -152,13 +152,13 @@ public class Game extends AbstractDraw implements KeyListener {
 		g2d.drawLine(BOARD_SIZE, BOARD_SIZE, BOARD_SIZE, 0);
 		
 		g2d.setColor(Color.DARK_GRAY);
-		for (int i = 0; i < BOARD_SIZE / 10; i++)
+		for (int i = 0; i < BOARD_SIZE / 20; i++)
 		{
-			g2d.drawLine(i * 10, 0, i * 10, BOARD_SIZE);
+			g2d.drawLine(i * 20, 0, i * 20, BOARD_SIZE);
 		}
-		for (int i = 0; i < BOARD_SIZE / 10; i++)
+		for (int i = 0; i < BOARD_SIZE / 20; i++)
 		{
-			g2d.drawLine(0, i * 10, BOARD_SIZE, i * 10);
+			g2d.drawLine(0, i * 20, BOARD_SIZE, i * 20);
 		}
 		for(Cell f : s.getFood()){
 			g2d.setColor(f.getColor());

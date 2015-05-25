@@ -8,10 +8,12 @@ public class FakeServer {
 	private double deltaX, deltaY;
 	private Game game;
 	private Thread serverThread;
+	private Thread sizeReduce;
 	private Point position;
 
 	private Player player; // in the real server there will be a list of all the
 							// cells
+	private double trueMass;
 	private ArrayList<Cell> food = new ArrayList<Cell>();
 	public FakeServer(Point location, Game g) {
 		deltaX = deltaY = 0;
@@ -32,6 +34,13 @@ public class FakeServer {
 				act();
 			}
 		};
+		sizeReduce = new Thread() {
+			@Override
+			public void run() {
+				reduce();
+			}
+		};
+		sizeReduce.start();
 		serverThread.start();
 	}
 
@@ -47,7 +56,7 @@ public class FakeServer {
 			checkFood();
 			// System.out.println(player.getNewLocation());
 			game.setPlayer(player);
-
+			
 			// server tickrate
 			try {
 				Thread.sleep(8);
@@ -57,7 +66,27 @@ public class FakeServer {
 			}
 		}
 	}
-
+	public void reduce() {
+		boolean running = true;
+		while (running) {
+			if(player.getRadius() >= 5){
+				player.setRadius(player.getRadius()-1);
+			}
+			
+			try {
+				if(player.getRadius() >= 5 && player.getRadius() <= 300 ){
+					Thread.sleep((long)(15000-Math.pow(100,(1/500)*player.getRadius()+1.5)));
+				}
+				else if(player.getRadius() > 300){
+					Thread.sleep((long)(Math.pow(1.003, (player.getRadius()*-1)+2600)));
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public Point calculateNewLocation() {
 		double speedMultiplier = 2.0 / player.getRadius();
 		double direction = Math.atan(deltaY / deltaX);
