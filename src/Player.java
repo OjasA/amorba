@@ -36,7 +36,12 @@ public class Player extends Cell {
 				(int) super.getRadius() * 2, (int) super.getRadius() * 2); // draws
 																			// new
 																			// oval
-		g2d.setStroke(new BasicStroke((int) (this.getRadius() / 8)));
+		if(this.getRadius() < 24){
+			g2d.setStroke(new BasicStroke(3));
+		}
+		else{
+			g2d.setStroke(new BasicStroke((int) (this.getRadius() / 8)));
+		}
 		g2d.setColor(super.getColor().darker());
 		g2d.drawOval((int) (super.getLocation().getX() - super.getRadius()),
 				(int) (super.getLocation().getY() - super.getRadius()),

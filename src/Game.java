@@ -83,6 +83,14 @@ public class Game extends AbstractDraw implements KeyListener {
 				window.closeWindow();
 				running = false;
 			}
+			if(player.getRadius() <= 0){
+				window.closeWindow();
+				JFrame disentigrate = new JFrame();
+				JOptionPane.showMessageDialog(disentigrate,
+						"Your cell shriveled up!", "You died!",
+						JOptionPane.WARNING_MESSAGE);
+				running = false;
+			}
 			// send mouse info to server
 			Point loc = player.getLocation();
 			Point boardPosition = new Point((int) (loc.x + (position.x
