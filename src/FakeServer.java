@@ -1,9 +1,6 @@
 import java.awt.Point;
 import java.util.ArrayList;
 
-//This class is for preliminary testing purposes only.
-//Some of this code can be eventually moved to the real server.
-
 public class FakeServer {
 	private double deltaX, deltaY;
 	private Game game;
@@ -63,7 +60,7 @@ public class FakeServer {
 
 			// server tickrate
 			try {
-				Thread.sleep(8);
+				Thread.sleep(12);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -94,32 +91,49 @@ public class FakeServer {
 	}
 
 	public Point calculateNewLocation() {
-		double speedMultiplier = 2.0 / player.getRadius();
-		double direction = Math.atan(deltaY / deltaX);
+		double mult = 10.0 / player.getRadius();
+		double speed = 0;
 		deltaX = position.getX() - player.getLocation().getX();
 		deltaY = position.getY() - player.getLocation().getY();
-		if (deltaX < 0)
-			direction += Math.PI;
-		double delta = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
-		if (delta >= 200) {
-			delta = 200;
+		double distance = Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
+		speed = distance * mult;
+		if (distance > 100) {
+			distance = 100;
+		}
+		int horizontal, vertical;
+		double slope = deltaY / deltaX;
+
+		if (deltaX > 0) { // true means right, false means left
+			horizontal = 1;
+		} else if (deltaX == 0) {
+			horizontal = 0;
+		} else {
+			horizontal = -1;
 		}
 
-		double newDelta = (delta * speedMultiplier);
-		double newDeltaX = (Math.cos(direction) * newDelta);
-		double newDeltaY = (Math.sin(direction) * newDelta);
+		if (deltaY > 0) { // true means right, false means left
+			vertical = 1;
+		} else if (deltaY == 0) {
+			vertical = 0;
+		} else {
+			vertical = -1;
+		}
 
-		if (newDeltaX < 0) {
+		double newDeltaX = 0;
+		double newDeltaY = 0;
+		if (horizontal == -1) {
+			newDeltaX = -1 * Math.sqrt((speed * speed) / ((slope * slope) + 1));
+			newDeltaY = (slope * newDeltaX);
+		} else if (horizontal == 1) {
+			newDeltaX = Math.sqrt((speed * speed) / ((slope * slope) + 1));
+			newDeltaY = (slope * newDeltaX);
+		} else if (horizontal == 0) {
 			newDeltaX = 0;
+			newDeltaY = vertical * speed;
 		}
-		if (newDeltaY < 0) {
-			newDeltaY = 0;
-		}
+		return new Point((int) (player.getLocation().getX() + newDeltaX),
+				(int) (player.getLocation().getY() + newDeltaY));
 
-		Point ans = new Point((int) newDeltaX + (int) position.getX(),
-				(int) newDeltaY + (int) position.getY());
-		// return ans;
-		return ans;
 	}
 
 	public void eatFood() {
