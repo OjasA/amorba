@@ -174,7 +174,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		}
 		catch (java.util.ConcurrentModificationException e)
 		{
-			System.out.println("Concurrent Modification exception: the food tried to draw at the same time as being eaten.");
+			//you happy now ojas
 		}
 	}
 
