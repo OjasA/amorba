@@ -27,6 +27,7 @@ public class FakeServer {
 		player.generateColor();
 		player.setNewLocation(player.getLocation());
 		position = new Point(0, 0);
+		player.setName(g.getName());
 
 		serverThread = new Thread() {
 			@Override

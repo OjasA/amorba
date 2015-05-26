@@ -10,9 +10,12 @@ import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
 
 public class Player extends Cell {
-
+	
+	private String name;
+	
 	public Player(int theRadius, Point theLocation) {
 		super(theRadius, theLocation);
+		name = "Amoeba";
 	}
 	
 	public void moveAndDraw(Graphics2D g2d)
@@ -26,7 +29,6 @@ public class Player extends Cell {
 		g2d.setColor(super.getColor());
 		g2d.fillOval((int) (super.getLocation().getX() - super.getRadius()), (int) (super.getLocation().getY() - super.getRadius()), (int) super.getRadius() * 2, (int) super.getRadius() * 2); //draws new oval
 		
-		String name = new String("Amorba!!!");
 		AffineTransform affinetransform = new AffineTransform();    
 		FontRenderContext frc = new FontRenderContext(affinetransform,true,true);    
 		
@@ -42,5 +44,10 @@ public class Player extends Cell {
 		g2d.setFont(font);
 		g2d.drawString(name,(int)this.getLocation().getX()-(textwidth/2),(int)this.getLocation().getY()+(textheight/4));
 		
+	}
+	
+	public void setName(String s)
+	{
+		name = s;
 	}
 }

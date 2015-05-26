@@ -36,7 +36,7 @@ public class Game extends AbstractDraw implements KeyListener {
 	public static final int BOARD_SIZE = 5000;
 	
 	public Game(String theName, GameWindow theWindow) {
-		
+		name = theName;
 		//this will eventually come from server
 		position = new Point(0, 0);
 		s = new FakeServer(position, this);
@@ -44,7 +44,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		player.setNewLocation(new Point(100, 100));
 		// get window this frame is being hosted in
 		window = theWindow;
-
+		
 		//key tracker
 		keys = new boolean[525];
 		
@@ -113,7 +113,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		Rectangle scoreRect = new Rectangle((int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.25), (int)((this.getBounds().getHeight()*0.06)));
 		g2d.setColor(Color.WHITE);
 		g2d.drawString("Score: ",30,(int)scoreRect.getCenterY());
-		g2d.drawString(Double.toString(player.getRadius()),70,(int)scoreRect.getCenterY());
+		g2d.drawString(Integer.toString((int) player.getRadius()),70,(int)scoreRect.getCenterY());
 	
 		//center viewport on player
 		if(player.getRadius() <= 100){
@@ -205,7 +205,12 @@ public class Game extends AbstractDraw implements KeyListener {
 	public static int getBoardSize() {
 		return BOARD_SIZE;
 	}
-
+	
+	@Override
+	public String getName()
+	{
+		return name;
+	}
 	
 
 }
