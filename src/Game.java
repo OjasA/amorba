@@ -138,6 +138,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		
 		
 		drawGrid(g2d);
+		drawFood(g2d);
 		player.moveAndDraw(g2d);
 	}
 	
@@ -160,9 +161,20 @@ public class Game extends AbstractDraw implements KeyListener {
 		{
 			g2d.drawLine(0, i * 20, BOARD_SIZE, i * 20);
 		}
-		for(Cell f : s.getFood()){
-			g2d.setColor(f.getColor());
-			g2d.fillOval((int)(f.getLocation().getX()), (int)(f.getLocation().getY()), 8,8);
+		
+	}
+	
+	public void drawFood(Graphics2D g2d)
+	{
+		try{
+			for(Cell f : s.getFood()){
+				g2d.setColor(f.getColor());
+				g2d.fillOval((int)(f.getLocation().getX()), (int)(f.getLocation().getY()), 8,8);
+			}
+		}
+		catch (java.util.ConcurrentModificationException e)
+		{
+			System.out.println("Concurrent Modification exception: the food tried to draw at the same time as being eaten.");
 		}
 	}
 
