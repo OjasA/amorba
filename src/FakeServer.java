@@ -69,13 +69,14 @@ public class FakeServer {
 	public Point calculateNewLocation() {
 		double mult = 10.0 / player.getRadius();
 		double speed = 0;
-		deltaX = position.getX() - player.getLocation().getX();
-		deltaY = position.getY() - player.getLocation().getY();
+		deltaX = position.getX() - game.getWidth() / 2;
+		deltaY = position.getY() - game.getHeight() / 2;
+		System.out.println(deltaX + "    " + deltaY);
 		double distance = Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
-		speed = distance * mult;
 		if (distance > 100) {
 			distance = 100;
 		}
+		speed = distance * mult;
 		int horizontal, vertical;
 		double slope = deltaY / deltaX;
  
@@ -109,6 +110,7 @@ public class FakeServer {
 		}
 		return new Point((int) (player.getLocation().getX() + newDeltaX),
 				(int) (player.getLocation().getY() + newDeltaY));
+		//return new Point(4900, 4900);
  
 	}
 	
