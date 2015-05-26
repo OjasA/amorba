@@ -48,7 +48,7 @@ public class FakeServer {
 			player.setNewLocation(calculateNewLocation());
 			checkFood();
 			// System.out.println(player.getNewLocation());
-			player.setRadius(player.getRadius() - (player.getRadius() / 10000));
+			player.setRadius(player.getRadius() - (player.getRadius() / 50000));
 			game.setPlayer(player);
 			
 			
