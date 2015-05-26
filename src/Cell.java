@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.Point;
 
 public class Cell {
-	private int radius;
+	private double radius;
 	private Point location;
 	private Point newLocation;
 	private Color color;
@@ -24,11 +24,11 @@ public class Cell {
 		setColor(col);
 	}
 
-	public int getRadius() {
+	public double getRadius() {
 		return radius;
 	}
 
-	public void setRadius(int radius) {
+	public void setRadius(double radius) {
 		this.radius = radius;
 	}
 

@@ -88,7 +88,7 @@ public class Game extends AbstractDraw implements KeyListener {
 			}
 			//send mouse info to server
 			Point loc = player.getLocation();
-			Point boardPosition = new Point(loc.x + (position.x + player.getRadius() - window.getWidth()/2)/40, loc.y + (position.y + player.getRadius() - window.getHeight()/2)/40);
+			Point boardPosition = new Point((int) (loc.x + (position.x + player.getRadius() - window.getWidth()/2)/40), (int) (loc.y + (position.y + player.getRadius() - window.getHeight()/2)/40));
 			//System.out.println("                                                   " + boardPosition);
 			s.setPosition(boardPosition);
 				
@@ -113,7 +113,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		Rectangle scoreRect = new Rectangle((int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.25), (int)((this.getBounds().getHeight()*0.06)));
 		g2d.setColor(Color.WHITE);
 		g2d.drawString("Score: ",30,(int)scoreRect.getCenterY());
-		g2d.drawString(Integer.toString(player.getRadius()),70,(int)scoreRect.getCenterY());
+		g2d.drawString(Double.toString(player.getRadius()),70,(int)scoreRect.getCenterY());
 	
 		//center viewport on player
 		if(player.getRadius() <= 100){
