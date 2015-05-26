@@ -15,15 +15,19 @@ public class FakeServer {
 							// cells
 	private double trueMass;
 	private ArrayList<Cell> food = new ArrayList<Cell>();
+
 	public FakeServer(Point location, Game g) {
 		deltaX = deltaY = 0;
 		game = g;
-		for(int c = 0; c < 2500; c++){
-			Cell tempFood = new Cell(5,(new Point((int)(Math.random()*5000), (int)(Math.random()*5000))));
+		for (int c = 0; c < 2500; c++) {
+			Cell tempFood = new Cell(5,
+					(new Point((int) (Math.random() * 5000),
+							(int) (Math.random() * 5000))));
 			tempFood.generateColor();
 			food.add(tempFood);
 		}
-		player = new Player(15, new Point((int)(Math.random() * 5000), (int)(Math.random() * 5000)));
+		player = new Player(15, new Point((int) (Math.random() * 5000),
+				(int) (Math.random() * 5000)));
 		player.generateColor();
 		player.setNewLocation(player.getLocation());
 		position = new Point(0, 0);
@@ -53,10 +57,10 @@ public class FakeServer {
 		boolean running = true;
 		while (running) {
 			player.setNewLocation(calculateNewLocation());
-			checkFood();
+			eatFood();
 			// System.out.println(player.getNewLocation());
 			game.setPlayer(player);
-			
+
 			// server tickrate
 			try {
 				Thread.sleep(8);
@@ -66,19 +70,21 @@ public class FakeServer {
 			}
 		}
 	}
+
 	public void reduce() {
 		boolean running = true;
 		while (running) {
-			if(player.getRadius() >= 5){
-				player.setRadius(player.getRadius()-1);
+			if (player.getRadius() >= 5) {
+				player.setRadius(player.getRadius() - 1);
 			}
-			
+
 			try {
-				if(player.getRadius() >= 5 && player.getRadius() <= 300 ){
-					Thread.sleep((long)(15000-Math.pow(100,(1/500)*player.getRadius()+1.5)));
-				}
-				else if(player.getRadius() > 300){
-					Thread.sleep((long)(Math.pow(1.003, (player.getRadius()*-1)+2600)));
+				if (player.getRadius() >= 5 && player.getRadius() <= 300) {
+					Thread.sleep((long) (15000 - Math.pow(100, (1 / 500)
+							* player.getRadius() + 1.5)));
+				} else if (player.getRadius() > 300) {
+					Thread.sleep((long) (Math.pow(1.003,
+							(player.getRadius() * -1) + 2600)));
 				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -86,14 +92,10 @@ public class FakeServer {
 			}
 		}
 	}
-	
+
 	public Point calculateNewLocation() {
 		double speedMultiplier = 2.0 / player.getRadius();
 		double direction = Math.atan(deltaY / deltaX);
-		/*
-		System.out
-				.println(player.getLocation() + " " + player.getNewLocation());
-		*/
 		deltaX = position.getX() - player.getLocation().getX();
 		deltaY = position.getY() - player.getLocation().getY();
 		if (deltaX < 0)
@@ -119,17 +121,22 @@ public class FakeServer {
 		// return ans;
 		return ans;
 	}
-	
-	public void checkFood() {
-		for(int c = 0; c < food.size(); c++){
+
+	public void eatFood() {
+		for (int c = 0; c < food.size(); c++) {
 			Point locFood = food.get(c).getLocation();
-			double collisionCheck = Math.pow(((food.get(c).getRadius() + player.getRadius())),2);
-			double xDiff = Math.pow(((food.get(c).getLocation().getX() - player.getLocation().getX())),2);
-			double yDiff = Math.pow(((food.get(c).getLocation().getY() - player.getLocation().getY())),2);
-			if((xDiff + yDiff) <= collisionCheck){
+			double collisionCheck = Math.pow(
+					((food.get(c).getRadius() + player.getRadius())), 2);
+			double xDiff = Math.pow(((food.get(c).getLocation().getX() - player
+					.getLocation().getX())), 2);
+			double yDiff = Math.pow(((food.get(c).getLocation().getY() - player
+					.getLocation().getY())), 2);
+			if ((xDiff + yDiff) <= collisionCheck) {
 				player.addRadius(1);
 				food.remove(c);
-				Cell tempFood = new Cell(5,(new Point((int)(Math.random()*5000), (int)(Math.random()*5000))));
+				Cell tempFood = new Cell(5, (new Point(
+						(int) (Math.random() * 5000),
+						(int) (Math.random() * 5000))));
 				tempFood.generateColor();
 				food.add(tempFood);
 			}
