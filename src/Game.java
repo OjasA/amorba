@@ -36,7 +36,7 @@ public class Game extends AbstractDraw implements KeyListener {
 	public static final int BOARD_SIZE = 5000;
 	
 	public Game(String theName, GameWindow theWindow) {
-		
+		name = theName;
 		//this will eventually come from server
 		position = new Point(0, 0);
 		s = new FakeServer(position, this);
@@ -44,7 +44,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		player.setNewLocation(new Point(100, 100));
 		// get window this frame is being hosted in
 		window = theWindow;
-
+		
 		//key tracker
 		keys = new boolean[525];
 		
@@ -88,7 +88,7 @@ public class Game extends AbstractDraw implements KeyListener {
 			}
 			//send mouse info to server
 			Point loc = player.getLocation();
-			Point boardPosition = new Point(loc.x + (position.x + player.getRadius() - window.getWidth()/2)/40, loc.y + (position.y + player.getRadius() - window.getHeight()/2)/40);
+			Point boardPosition = new Point((int) (loc.x + (position.x + player.getRadius() - window.getWidth()/2)/40), (int) (loc.y + (position.y + player.getRadius() - window.getHeight()/2)/40));
 			//System.out.println("                                                   " + boardPosition);
 			s.setPosition(boardPosition);
 				
@@ -113,7 +113,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		Rectangle scoreRect = new Rectangle((int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.01), (int)(this.getBounds().getWidth()*0.25), (int)((this.getBounds().getHeight()*0.06)));
 		g2d.setColor(Color.WHITE);
 		g2d.drawString("Score: ",30,(int)scoreRect.getCenterY());
-		g2d.drawString(Integer.toString(player.getRadius()),70,(int)scoreRect.getCenterY());
+		g2d.drawString(Integer.toString((int) player.getRadius()),70,(int)scoreRect.getCenterY());
 	
 		//center viewport on player
 		if(player.getRadius() <= 100){
@@ -138,6 +138,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		
 		
 		drawGrid(g2d);
+		drawFood(g2d);
 		player.moveAndDraw(g2d);
 	}
 	
@@ -160,9 +161,20 @@ public class Game extends AbstractDraw implements KeyListener {
 		{
 			g2d.drawLine(0, i * 20, BOARD_SIZE, i * 20);
 		}
-		for(Cell f : s.getFood()){
-			g2d.setColor(f.getColor());
-			g2d.fillOval((int)(f.getLocation().getX()), (int)(f.getLocation().getY()), 8,8);
+		
+	}
+	
+	public void drawFood(Graphics2D g2d)
+	{
+		try{
+			for(Cell f : s.getFood()){
+				g2d.setColor(f.getColor());
+				g2d.fillOval((int)(f.getLocation().getX()), (int)(f.getLocation().getY()), 8,8);
+			}
+		}
+		catch (java.util.ConcurrentModificationException e)
+		{
+			//you happy now ojas
 		}
 	}
 
@@ -193,7 +205,12 @@ public class Game extends AbstractDraw implements KeyListener {
 	public static int getBoardSize() {
 		return BOARD_SIZE;
 	}
-
+	
+	@Override
+	public String getName()
+	{
+		return name;
+	}
 	
 
 }
