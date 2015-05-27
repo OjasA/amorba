@@ -65,20 +65,22 @@ public class FakeServer {
 	
 	public Point calculateNewLocation() {
 		double mult;
-		if(player.getRadius() <= 250){
+		/*if(player.getRadius() <= 250){
 			mult = 0.65 - Math.pow(1.05, ((1/20)*player.getRadius())-20);
 		}
 		else{
 			mult = 0.036;
 		}
+		*/
+		mult = 3.0 / player.getRadius();
 		double speed = 0;
-		deltaX = position.getX() - player.getLocation().getX();
-		deltaY = position.getY() - player.getLocation().getY();
+		deltaX = position.getX() - game.getWidth() / 2;
+		deltaY = position.getY() - game.getHeight() / 2;
 		double distance = Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
-		double frameWidth = game.getBounds().getWidth();
-		double frameHeight = game.getBounds().getHeight();
-		if (distance > 10) {
-			distance = 10;
+		double frameWidth = game.getWidth();
+		double frameHeight = game.getHeight();
+		if (distance > 3 * player.getRadius()) {
+			distance = 3 * player.getRadius();
 		}
 		if(frameHeight < frameWidth){
 			if(distance > frameHeight){
@@ -124,6 +126,7 @@ public class FakeServer {
 		}
 		return new Point((int) (player.getLocation().getX() + newDeltaX),
 				(int) (player.getLocation().getY() + newDeltaY));
+		//return new Point(100, 100);
  
 	}
 	

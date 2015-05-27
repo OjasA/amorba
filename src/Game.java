@@ -96,10 +96,7 @@ public class Game extends AbstractDraw implements KeyListener {
 				running = false;
 			}
 			//send mouse info to server
-			Point loc = player.getLocation();
-			Point boardPosition = new Point((int) (loc.x + (position.x + player.getRadius() - window.getWidth()/2)/40), (int) (loc.y + (position.y + player.getRadius() - window.getHeight()/2)/40));
-			//System.out.println("                                                   " + boardPosition);
-			s.setPosition(boardPosition);
+			s.setPosition(position);
 				
 			//repaint
 			repaint();
@@ -181,7 +178,6 @@ public class Game extends AbstractDraw implements KeyListener {
 				g2d.fillOval((int)(f.getLocation().getX()), (int)(f.getLocation().getY()), 8,8);
 			}
 		} catch (java.util.ConcurrentModificationException e) {
-			e.printStackTrace();
 		}
 	}
 
