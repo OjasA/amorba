@@ -35,13 +35,14 @@ public class Game extends AbstractDraw implements KeyListener {
 	
 	public static final int BOARD_SIZE = 5000;
 	
-	public Game(String theName, GameWindow theWindow) {
+	public Game(String theName, GameWindow theWindow, int ident) {
 		name = theName;
 		//this will eventually come from server
 		position = new Point(0, 0);
 		s = new FakeServer(position, this);
 		player = new Player(15, new Point((int)(Math.random() * 5000), (int)(Math.random() * 5000)));
 		player.setNewLocation(new Point(100, 100));
+		player.setId(ident);
 		// get window this frame is being hosted in
 		window = theWindow;
 		
@@ -85,6 +86,14 @@ public class Game extends AbstractDraw implements KeyListener {
 			{
 				window.closeWindow();
 				running  = false;
+			}
+			if(player.getRadius() <= 0){
+				window.closeWindow();
+				JFrame disentigrate = new JFrame();
+				JOptionPane.showMessageDialog(disentigrate,
+						"Your cell shriveled up!", "You died!",
+						JOptionPane.WARNING_MESSAGE);
+				running = false;
 			}
 			//send mouse info to server
 			Point loc = player.getLocation();
