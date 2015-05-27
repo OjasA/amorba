@@ -64,7 +64,13 @@ public class FakeServer {
 	
 	
 	public Point calculateNewLocation() {
-		double mult = 10.0 / player.getRadius();
+		double mult;
+		if(player.getRadius() <= 250){
+			mult = 0.65 - Math.pow(1.05, ((1/20)*player.getRadius())-20);
+		}
+		else{
+			mult = 0.036;
+		}
 		double speed = 0;
 		deltaX = position.getX() - player.getLocation().getX();
 		deltaY = position.getY() - player.getLocation().getY();

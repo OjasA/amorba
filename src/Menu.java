@@ -31,7 +31,7 @@ public class Menu extends JFrame {
 		Image img2 = null;
 		int iconSize = 100;
 		try {
-			img = ImageIO.read(new File("resoources/amorbaicon-bmp.png")); // read
+			img = ImageIO.read(new File("resources/amorbaicon-bmp.png")); // read
 																		// image
 			img2 = img.getScaledInstance(iconSize, iconSize,
 					Image.SCALE_SMOOTH); // resize image to fit swing element
