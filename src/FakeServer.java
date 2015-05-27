@@ -75,10 +75,22 @@ public class FakeServer {
 		deltaX = position.getX() - player.getLocation().getX();
 		deltaY = position.getY() - player.getLocation().getY();
 		double distance = Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
-		speed = distance * mult;
-		if (distance > 100) {
-			distance = 100;
+		double frameWidth = game.getBounds().getWidth();
+		double frameHeight = game.getBounds().getHeight();
+		if (distance > 10) {
+			distance = 10;
 		}
+		if(frameHeight < frameWidth){
+			if(distance > frameHeight){
+				distance = frameHeight;
+			}
+		}
+		else if(frameHeight > frameWidth){
+			if(distance > frameWidth){
+				distance = frameWidth;
+			}
+		}
+		speed = distance * mult;
 		int horizontal, vertical;
 		double slope = deltaY / deltaX;
  
