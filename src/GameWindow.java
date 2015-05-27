@@ -18,7 +18,7 @@ public class GameWindow extends JFrame implements KeyListener {
 
 		// string parsing
 		if (theName.matches(" *")) {
-			name = "Amoeba";
+			name = "#" + FakeServer.getNewID();
 		} else {
 			name = theName;
 		}

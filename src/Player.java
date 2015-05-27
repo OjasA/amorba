@@ -15,7 +15,7 @@ public class Player extends Cell {
 	
 	public Player(int theRadius, Point theLocation) {
 		super(theRadius, theLocation);
-		name = "Amoeba";
+		name = "#" + FakeServer.getNewID();
 	}
 	
 	public void moveAndDraw(Graphics2D g2d)
@@ -38,9 +38,10 @@ public class Player extends Cell {
 		else{
 			g2d.setColor(Color.BLACK);
 		}
-		Font font = new Font("Trebuchet MS", Font.PLAIN, (int) (this.getRadius()*0.4));
-		int textwidth = (int)(font.getStringBounds(name, frc).getWidth());
-		int textheight = (int)(font.getStringBounds(name, frc).getHeight());
+		Font font = new Font("Segoe UI", Font.PLAIN,
+				(int) (this.getRadius() * 0.4));
+		int textwidth = (int) (font.getStringBounds(name, frc).getWidth());
+		int textheight = (int) (font.getStringBounds(name, frc).getHeight());
 		g2d.setFont(font);
 		g2d.drawString(name,(int)this.getLocation().getX()-(textwidth/2),(int)this.getLocation().getY()+(textheight/4));
 		

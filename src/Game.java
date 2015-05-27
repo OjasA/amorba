@@ -171,10 +171,8 @@ public class Game extends AbstractDraw implements KeyListener {
 				g2d.setColor(f.getColor());
 				g2d.fillOval((int)(f.getLocation().getX()), (int)(f.getLocation().getY()), 8,8);
 			}
-		}
-		catch (java.util.ConcurrentModificationException e)
-		{
-			//you happy now ojas
+		} catch (java.util.ConcurrentModificationException e) {
+			e.printStackTrace();
 		}
 	}
 

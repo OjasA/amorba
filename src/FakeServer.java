@@ -10,6 +10,7 @@ public class FakeServer {
 	private Thread serverThread;
 	private Thread sizeReduce;
 	private Point position;
+	private static int nextID = 0;
 
 	private Player player; // in the real server there will be a list of all the
 							// cells
@@ -51,10 +52,6 @@ public class FakeServer {
 			// System.out.println(player.getNewLocation());
 			player.setRadius(player.getRadius() - (player.getRadius() / 50000));
 			game.setPlayer(player);
-			
-			
-			
-			// server tickrate
 			try {
 				Thread.sleep(8);
 			} catch (InterruptedException e) {
@@ -113,7 +110,7 @@ public class FakeServer {
 	}
 	
 	public void checkFood() {
-		for(int c = 0; c < food.size(); c++){
+		for(int c = 0; c < food.size(); c++) {
 			Point locFood = food.get(c).getLocation();
 			double collisionCheck = Math.pow(((food.get(c).getRadius() + player.getRadius())),2);
 			double xDiff = Math.pow(((food.get(c).getLocation().getX() - player.getLocation().getX())),2);
@@ -142,6 +139,10 @@ public class FakeServer {
 
 	public void setFood(ArrayList<Cell> food) {
 		this.food = food;
+	}
+	
+	public static int getNewID() {
+		return nextID++;
 	}
 
 }
