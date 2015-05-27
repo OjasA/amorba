@@ -12,15 +12,18 @@ import javax.swing.JFrame;
 
 public class GameWindow extends JFrame implements KeyListener {
 	private String name;
+	private int id;
 
 	public GameWindow(String theName) {
 		addKeyListener(this);
 
 		// string parsing
 		if (theName.matches(" *")) {
-			name = "#" + FakeServer.getNewID();
+			name = "Amoeba";
+			id = FakeServer.getNewID();
 		} else {
 			name = theName;
+			id = FakeServer.getNewID();
 		}
 
 		// main setup
@@ -77,7 +80,7 @@ public class GameWindow extends JFrame implements KeyListener {
 			}
 		});
 
-		setContentPane(new Game(name, this));
+		setContentPane(new Game(name, this, id));
 		getContentPane().setBackground(ConfigVariables.backgroundColor);
 
 	}
