@@ -8,13 +8,14 @@ import java.awt.Shape;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
 
 public class Player extends Cell {
 	
 	private String name;
 	private int id;
 	
-	public Player(int theRadius, Point theLocation) {
+	public Player(int theRadius, Point2D.Double theLocation) {
 		super(theRadius, theLocation);
 		name = "Amoeba";
 	}
@@ -22,13 +23,13 @@ public class Player extends Cell {
 	public void moveAndDraw(Graphics2D g2d)
 	{
 		g2d.setColor(new Color(0,0,0,0)); //paints w/ background color to erase
-		g2d.fillOval((int) (super.getLocation().getX() - super.getRadius()), (int) (super.getLocation().getY() - super.getRadius()), (int) super.getRadius() * 2, (int) super.getRadius() * 2); //erases current oval
+		g2d.fillOval((int) Math.round(super.getLocation().getX() - super.getRadius()), (int) Math.round(super.getLocation().getY() - super.getRadius()), (int) super.getRadius() * 2, (int) super.getRadius() * 2); //erases current oval
 		
 		super.setLocation(super.getNewLocation());
 		super.setNewLocation(super.getLocation());
 		
 		g2d.setColor(super.getColor());
-		g2d.fillOval((int) (super.getLocation().getX() - super.getRadius()), (int) (super.getLocation().getY() - super.getRadius()), (int) super.getRadius() * 2, (int) super.getRadius() * 2); //draws new oval
+		g2d.fillOval((int) Math.round(super.getLocation().getX() - super.getRadius()), (int) Math.round(super.getLocation().getY() - super.getRadius()), (int) super.getRadius() * 2, (int) super.getRadius() * 2); //draws new oval
 		
 		// draw outline
 		if(this.getRadius() < 24){

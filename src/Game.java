@@ -9,6 +9,7 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.*;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -43,8 +44,8 @@ public class Game extends AbstractDraw implements KeyListener {
 		//this will eventually come from server
 		position = new Point(0, 0);
 		s = new FakeServer(position, this);
-		player = new Player(15, new Point((int)(Math.random() * 5000), (int)(Math.random() * 5000)));
-		player.setNewLocation(new Point(100, 100));
+		player = new Player(15, new Point2D.Double((int)(Math.random() * 5000), (int)(Math.random() * 5000)));
+		player.setNewLocation(new Point2D.Double(100, 100));
 		player.setId(ident);
 		// get window this frame is being hosted in
 		window = theWindow;
@@ -124,6 +125,8 @@ public class Game extends AbstractDraw implements KeyListener {
 		g2d.drawString("Score: ",30,(int)scoreRect.getCenterY());
 		g2d.drawString(Integer.toString((int) player.getRadius()),70,(int)scoreRect.getCenterY());
 		g2d.drawString(test, 50, (int) scoreRect.getCenterY() + 20); 
+		
+
 	
 		//center viewport on player
 		if(player.getRadius() <= 100){
@@ -145,7 +148,6 @@ public class Game extends AbstractDraw implements KeyListener {
 		camY = (int) (this.getHeight() / 2 / camSize - player.getLocation().getY());
 		g2d.scale(camSize, camSize);
 		g2d.translate(camX, camY);
-		
 		
 		drawGrid(g2d);
 		drawFood(g2d);

@@ -1,4 +1,5 @@
 import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 //This class is for preliminary testing purposes only.
@@ -20,11 +21,11 @@ public class FakeServer {
 		deltaX = deltaY = 0;
 		game = g;
 		for(int c = 0; c < 2500; c++){
-			Cell tempFood = new Cell(5,(new Point((int)(Math.random()*5000), (int)(Math.random()*5000))));
+			Cell tempFood = new Cell(5,(new Point2D.Double((int)(Math.random()*5000), (int)(Math.random()*5000))));
 			tempFood.generateColor();
 			food.add(tempFood);
 		}
-		player = new Player(15, new Point((int)(Math.random() * 5000), (int)(Math.random() * 5000)));
+		player = new Player(15, new Point2D.Double((int)(Math.random() * 5000), (int)(Math.random() * 5000)));
 		player.generateColor();
 		player.setNewLocation(player.getLocation());
 		position = new Point(0, 0);
@@ -63,15 +64,14 @@ public class FakeServer {
 	
 	
 	
-	public Point calculateNewLocation() {
+	/*public Point calculateNewLocation() {
 		double mult;
-		/*if(player.getRadius() <= 250){
+		if(player.getRadius() <= 250){
 			mult = 0.65 - Math.pow(1.05, ((1/20)*player.getRadius())-20);
 		}
 		else{
 			mult = 0.036;
 		}
-		*/
 		mult = 1.0 / player.getRadius();
 		double speed = 0;
 		deltaX = position.getX() - game.getWidth() / 2;
@@ -129,18 +129,60 @@ public class FakeServer {
 				(int) (player.getLocation().getY() + newDeltaY));
 		//return new Point(100, 100);
  
+	}*/
+	
+	public Point2D.Double calculateNewLocation() {
+		double mult;
+		if(player.getRadius() <= 250){
+			mult = 0.65 - Math.pow(1.05, ((1/20)*player.getRadius())-20);
+		}
+		else{
+			mult = 0.036;
+		}
+		mult = 1.0 / player.getRadius();
+		double speed = 0;
+		deltaX = position.getX() - game.getWidth() / 2;
+		deltaY = position.getY() - game.getHeight() / 2;
+		deltaY *= -1;
+		double distance = Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
+		if (distance > 3 * player.getRadius()) {
+			distance = 3 * player.getRadius();
+		}
+		speed = distance * mult;
+		double direction = Math.atan(deltaY / deltaX);
+		if (deltaX < 0)
+		{
+			direction += Math.PI;
+		}
+		if (direction < 0)
+		{
+			direction += Math.PI * 2.0;
+		}
+		game.setTest(Double.toString(direction / Math.PI));
+ 
+		
+		double newDeltaX = Math.cos(direction) * speed;
+		double newDeltaY = Math.sin(direction) * speed;
+		game.setTest(Double.toString(newDeltaY));
+		newDeltaY *= -1;
+		return new Point2D.Double((player.getLocation().getX() + newDeltaX),
+				(player.getLocation().getY() + newDeltaY));
+		//return new Point(100, 100);
+ 
 	}
+	
+	
 	
 	public void checkFood() {
 		for(int c = 0; c < food.size(); c++) {
-			Point locFood = food.get(c).getLocation();
+			Point2D.Double locFood = food.get(c).getLocation();
 			double collisionCheck = Math.pow(((food.get(c).getRadius() + player.getRadius())),2);
 			double xDiff = Math.pow(((food.get(c).getLocation().getX() - player.getLocation().getX())),2);
 			double yDiff = Math.pow(((food.get(c).getLocation().getY() - player.getLocation().getY())),2);
 			if((xDiff + yDiff) <= collisionCheck){
 				player.addRadius(1);
 				food.remove(c);
-				Cell tempFood = new Cell(5,(new Point((int)(Math.random()*5000), (int)(Math.random()*5000))));
+				Cell tempFood = new Cell(5,(new Point2D.Double((int)(Math.random()*5000), (int)(Math.random()*5000))));
 				tempFood.generateColor();
 				food.add(tempFood);
 			}

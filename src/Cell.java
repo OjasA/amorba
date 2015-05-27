@@ -1,24 +1,25 @@
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.geom.Point2D;
 
 public class Cell {
 	private double radius;
-	private Point location;
-	private Point newLocation;
+	private Point2D.Double location;
+	private Point2D.Double newLocation;
 	private Color color;
 
-	public Cell(int theradius, Point theLocation) {
+	public Cell(int theradius, Point2D.Double theLocation) {
 		setRadius(theradius);
 		setLocation(theLocation);
 	}
 
-	public Cell(int theradius, Point theLocation, Color color) {
+	public Cell(int theradius, Point2D.Double theLocation, Color color) {
 		setRadius(theradius);
 		setLocation(theLocation);
 		setColor(color);
 	}
 
-	public Cell(int i, Point theLocation, int xSpeed, int ySpeed, Color col) {
+	public Cell(int i, Point2D.Double theLocation, int xSpeed, int ySpeed, Color col) {
 		setRadius(i);
 		setLocation(theLocation);
 		setColor(col);
@@ -36,11 +37,11 @@ public class Cell {
 		this.radius += radius;
 	}
 
-	public Point getLocation() {
+	public Point2D.Double getLocation() {
 		return location;
 	}
 
-	public void setLocation(Point location) {
+	public void setLocation(Point2D.Double location) {
 		this.location = location;
 	}
 
@@ -62,7 +63,7 @@ public class Cell {
 	 * Sets a new position for the cell according to argument Point l
 	 * @param l The new location of the cell.
 	 */
-	public void setNewLocation(Point l) {
+	public void setNewLocation(Point2D.Double l) {
 		newLocation = l;
 		if (l.getX() < 0) {
 			newLocation.setLocation(0, newLocation.getY());
@@ -78,7 +79,7 @@ public class Cell {
 		}
 	}
 
-	public Point getNewLocation() {
+	public Point2D.Double getNewLocation() {
 		return newLocation;
 	}
 }
