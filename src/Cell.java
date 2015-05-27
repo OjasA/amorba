@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Point;
 import java.awt.geom.Point2D;
 
 public class Cell {
@@ -52,6 +51,10 @@ public class Cell {
 	public Color getColor() {
 		return color;
 	}
+	
+	/**
+	 * Assigns a random color in RGB color space
+	 */
 	public void generateColor() {
 		float red = (float) Math.random();
 		float green = (float) Math.random();

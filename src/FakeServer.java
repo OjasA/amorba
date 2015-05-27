@@ -9,14 +9,16 @@ public class FakeServer {
 	private double deltaX, deltaY;
 	private Game game;
 	private Thread serverThread;
-	private Thread sizeReduce;
 	private Point position;
 	private static int nextID = 0;
 
-	private Player player; // in the real server there will be a list of all the
-							// cells
-	private double trueMass;
+	// in the real server there will be a list of all cells
+	private Player player; 
+	/**
+	 * An ArrayList<Cell> of all active food in the game
+	 */
 	private ArrayList<Cell> food = new ArrayList<Cell>();
+	
 	public FakeServer(Point location, Game g) {
 		deltaX = deltaY = 0;
 		game = g;
@@ -172,10 +174,11 @@ public class FakeServer {
 	}
 	
 	
-	
+	/**
+	 * Check whether or not food has been eaten
+	 */
 	public void checkFood() {
 		for(int c = 0; c < food.size(); c++) {
-			Point2D.Double locFood = food.get(c).getLocation();
 			double collisionCheck = Math.pow(((food.get(c).getRadius() + player.getRadius())),2);
 			double xDiff = Math.pow(((food.get(c).getLocation().getX() - player.getLocation().getX())),2);
 			double yDiff = Math.pow(((food.get(c).getLocation().getY() - player.getLocation().getY())),2);
@@ -196,7 +199,11 @@ public class FakeServer {
 	public void setPosition(Point p) {
 		position = p;
 	}
-
+	
+	/**
+	 * Retrieve all food locations
+	 * @return ArrayList of type food
+	 */
 	public ArrayList<Cell> getFood() {
 		return food;
 	}

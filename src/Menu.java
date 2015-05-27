@@ -1,19 +1,15 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.Window;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Menu extends JFrame {
 	public Menu(String name) {
-		// main setup
+		// basic window setup
 		setTitle("Amorba");
 		setSize(205, 335);
 		setLocationRelativeTo(null);
@@ -38,18 +34,17 @@ public class Menu extends JFrame {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
 		icon.setIcon(new ImageIcon(img2));
 		icon.setBounds(100 - iconSize / 2, 0, iconSize, iconSize);
 		p.add(icon);
 
-		// "Name" label text
+		// "name" label text
 		JLabel label = new JLabel("Name:");
 		label.setBounds(80, 130, 50, 20);
 		label.setBackground(p.getBackground());
 		p.add(label);
 
-		// Name text input field
+		// name text input field
 		final JTextField field = new JTextField();
 		field.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
@@ -61,7 +56,8 @@ public class Menu extends JFrame {
 		});
 		field.setBounds(30, 150, 140, 25);
 		p.add(field);
-		field.setDocument(new JTextFieldLimit(15)); // limit input size to 15
+		// limit input size to 15
+		field.setDocument(new JTextFieldLimit(15)); 
 
 		// join game button
 		JButton join = new JButton("Join Game");
@@ -84,16 +80,14 @@ public class Menu extends JFrame {
 		});
 		p.add(settings);
 
-		// banner setup
+		// banner setup and read image
 		try {
-			img = ImageIO.read(new File("resources/amorbaicon-bmp-small.png")); // read
-																			// image
+			img = ImageIO.read(new File("resources/amorbaicon-bmp-small.png")); 
 			setIconImage(img);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		
-
 		// fill field w/ previous name
 		field.setText(name);
 
