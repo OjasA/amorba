@@ -165,6 +165,8 @@ public class FakeServer {
 		
 		double newDeltaX = Math.cos(direction) * speed;
 		double newDeltaY = Math.sin(direction) * speed;
+		newDeltaX = roundToSignificantFigures(newDeltaX,1);
+		newDeltaY = roundToSignificantFigures(newDeltaY,1);
 		game.setTest(Double.toString(newDeltaY));
 		newDeltaY *= -1;
 		return new Point2D.Double((player.getLocation().getX() + newDeltaX),
@@ -214,6 +216,18 @@ public class FakeServer {
 	
 	public static int getNewID() {
 		return nextID++;
+	}
+	public static double roundToSignificantFigures(double num, int n) {
+	    if(num == 0) {
+	        return 0;
+	    }
+
+	    final double d = Math.ceil(Math.log10(num < 0 ? -num: num));
+	    final int power = n - (int) d;
+
+	    final double magnitude = Math.pow(10, power);
+	    final long shifted = Math.round(num*magnitude);
+	    return shifted/magnitude;
 	}
 
 }

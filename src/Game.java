@@ -29,11 +29,9 @@ public class Game extends AbstractDraw implements KeyListener {
 	private Player player;
 	private FakeServer s;
 	
-	
 	private int camX;
 	private int camY;
 	private double camSize;
-	
 	private String test; //displays under score for debugging purposes
 	
 	public static final int BOARD_SIZE = 5000;
@@ -125,9 +123,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		g2d.drawString("Score: ",30,(int)scoreRect.getCenterY());
 		g2d.drawString(Integer.toString((int) player.getRadius()),70,(int)scoreRect.getCenterY());
 		g2d.drawString(test, 50, (int) scoreRect.getCenterY() + 20); 
-		
 
-	
 		//center viewport on player
 		if(player.getRadius() <= 100){
 			camSize = 3.3 - Math.pow(1.008, player.getRadius());
