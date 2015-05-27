@@ -28,15 +28,17 @@ public class Menu extends JFrame {
 		// amorba icon
 		JLabel icon = new JLabel();
 		BufferedImage img = null;
+		Image img2 = null;
 		int iconSize = 100;
 		try {
 			img = ImageIO.read(new File("icons/amorbaicon-bmp.png")); // read
 																		// image
+			img2 = img.getScaledInstance(iconSize, iconSize,
+					Image.SCALE_SMOOTH); // resize image to fit swing element
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		Image img2 = img.getScaledInstance(iconSize, iconSize,
-				Image.SCALE_SMOOTH); // resize image to fit swing element
+
 		icon.setIcon(new ImageIcon(img2));
 		icon.setBounds(100 - iconSize / 2, 0, iconSize, iconSize);
 		p.add(icon);
@@ -71,7 +73,7 @@ public class Menu extends JFrame {
 			}
 		});
 		p.add(join);
-		
+
 		// settings button
 		JButton settings = new JButton("Settings");
 		settings.setBounds(50, 270, 100, 30);
@@ -86,10 +88,11 @@ public class Menu extends JFrame {
 		try {
 			img = ImageIO.read(new File("icons/amorbaicon-bmp-small.png")); // read
 																			// image
+			setIconImage(img);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		setIconImage(img);
+		
 
 		// fill field w/ previous name
 		field.setText(name);
