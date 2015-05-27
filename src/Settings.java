@@ -42,7 +42,7 @@ public class Settings extends JFrame {
 		// banner setup
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("icons/amorbaicon-bmp-small.png")); // read
+			img = ImageIO.read(new File("resources/amorbaicon-bmp-small.png")); // read
 																			// image
 
 		} catch (IOException e1) {
