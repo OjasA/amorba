@@ -33,9 +33,12 @@ public class Game extends AbstractDraw implements KeyListener {
 	private int camY;
 	private double camSize;
 	
+	private String test; //displays under score for debugging purposes
+	
 	public static final int BOARD_SIZE = 5000;
 	
 	public Game(String theName, GameWindow theWindow, int ident) {
+		test = "";
 		name = theName;
 		//this will eventually come from server
 		position = new Point(0, 0);
@@ -120,6 +123,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		g2d.setColor(Color.WHITE);
 		g2d.drawString("Score: ",30,(int)scoreRect.getCenterY());
 		g2d.drawString(Integer.toString((int) player.getRadius()),70,(int)scoreRect.getCenterY());
+		g2d.drawString(test, 50, (int) scoreRect.getCenterY() + 20); 
 	
 		//center viewport on player
 		if(player.getRadius() <= 100){
@@ -213,6 +217,11 @@ public class Game extends AbstractDraw implements KeyListener {
 	public String getName()
 	{
 		return name;
+	}
+	
+	public void setTest(String s)
+	{
+		test = s;
 	}
 	
 

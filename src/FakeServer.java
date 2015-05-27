@@ -72,11 +72,12 @@ public class FakeServer {
 			mult = 0.036;
 		}
 		*/
-		mult = 3.0 / player.getRadius();
+		mult = 1.0 / player.getRadius();
 		double speed = 0;
 		deltaX = position.getX() - game.getWidth() / 2;
 		deltaY = position.getY() - game.getHeight() / 2;
 		double distance = Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
+		game.setTest(Double.toString(distance));
 		double frameWidth = game.getWidth();
 		double frameHeight = game.getHeight();
 		if (distance > 3 * player.getRadius()) {
