@@ -123,7 +123,6 @@ public class Game extends AbstractDraw implements KeyListener {
 		g2d.setColor(Color.WHITE);
 		g2d.drawString("Score: ",30,(int)scoreRect.getCenterY());
 		g2d.drawString(Integer.toString((int) player.getRadius()),70,(int)scoreRect.getCenterY());
-		g2d.drawString(test, 50, (int) scoreRect.getCenterY() + 20); 
 		// debug panel
 		if (keys[KeyEvent.VK_D])
 		{
@@ -140,6 +139,27 @@ public class Game extends AbstractDraw implements KeyListener {
 			g2d.drawString(Double.toString(position.getX() - this.getWidth() / 2), 125, (int)(debugPanel.getMinY()+60)); 
 			g2d.drawString("deltaY: ",30,(int)(debugPanel.getMinY()+75));
 			g2d.drawString(Double.toString(position.getY() - this.getHeight() / 2), 125, (int)(debugPanel.getMinY()+75)); 
+		}
+		
+		if (keys[KeyEvent.VK_CONTROL]){
+			g2d.setColor(Color.BLACK);
+			g2d.fillRect((int)(this.getBounds().getWidth()*0.01), this.getHeight()/4, 160, 140);
+			Rectangle controlPanel = new Rectangle((int)(this.getBounds().getWidth()*0.01), this.getHeight()/4, 150, 90);
+			g2d.setColor(Color.WHITE);
+			g2d.drawString("CONTROLS",30,(int)(controlPanel.getMinY()+20));
+			g2d.drawString("D : Opens debug panel",30,(int)(controlPanel.getMinY()+40));
+			g2d.drawString("Esc : Exits game",30,(int)(controlPanel.getMinY()+60));
+			g2d.drawString("Period : +5 size",30,(int)(controlPanel.getMinY()+80));
+			g2d.drawString("Comma : -5 size",30,(int)(controlPanel.getMinY()+100));
+			g2d.drawString("Ctrl : Opens controls",30,(int)(controlPanel.getMinY()+120));
+		}
+		if (keys[KeyEvent.VK_PERIOD])
+		{
+			player.setRadius(player.getRadius()+5);
+		}
+		if (keys[KeyEvent.VK_COMMA])
+		{
+			player.setRadius(player.getRadius()-5);
 		}
 		//center viewport on player
 		if(player.getRadius() <= 100){
