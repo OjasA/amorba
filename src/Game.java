@@ -124,7 +124,23 @@ public class Game extends AbstractDraw implements KeyListener {
 		g2d.drawString("Score: ",30,(int)scoreRect.getCenterY());
 		g2d.drawString(Integer.toString((int) player.getRadius()),70,(int)scoreRect.getCenterY());
 		g2d.drawString(test, 50, (int) scoreRect.getCenterY() + 20); 
-
+		// debug panel
+		if (keys[KeyEvent.VK_D])
+		{
+			g2d.setColor(Color.BLACK);
+			g2d.fillRect(0, (int)(this.getBounds().getHeight()-90), (int)(this.getBounds().getWidth()), 90);
+			Rectangle debugPanel = new Rectangle(0, (int)(this.getBounds().getHeight()-90), (int)(this.getBounds().getWidth()), 90);
+			g2d.setColor(Color.WHITE);
+			g2d.drawString("DEBUG MENU",30,(int)(debugPanel.getMinY()+15));
+			g2d.drawString("Current Position: ",30,(int)(debugPanel.getMinY()+30));
+			g2d.drawString("(" + player.getLocation().getX() + "," + player.getLocation().getY() + ")", 125, (int)(debugPanel.getMinY()+30)); 
+			g2d.drawString("Present Bearing: ",30,(int)(debugPanel.getMinY()+45));
+			g2d.drawString(test, 125, (int)(debugPanel.getMinY()+45)); 
+			g2d.drawString("deltaX: ",30,(int)(debugPanel.getMinY()+60));
+			g2d.drawString(Double.toString(position.getX() - this.getWidth() / 2), 125, (int)(debugPanel.getMinY()+60)); 
+			g2d.drawString("deltaY: ",30,(int)(debugPanel.getMinY()+75));
+			g2d.drawString(Double.toString(position.getY() - this.getHeight() / 2), 125, (int)(debugPanel.getMinY()+75)); 
+		}
 		//center viewport on player
 		if(player.getRadius() <= 100){
 			camSize = 3.3 - Math.pow(1.008, player.getRadius());
@@ -145,6 +161,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		camY = (int) (this.getHeight() / 2 / camSize - player.getLocation().getY());
 		g2d.scale(camSize, camSize);
 		g2d.translate(camX, camY);
+		
 		
 		drawGrid(g2d);
 		drawFood(g2d);

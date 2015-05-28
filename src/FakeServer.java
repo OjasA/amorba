@@ -18,11 +18,15 @@ public class FakeServer {
 	 * An ArrayList<Cell> of all active food in the game
 	 */
 	private ArrayList<Cell> food = new ArrayList<Cell>();
+	/**
+	 * Amount of food in the game
+	 */
+	private int foodLimit = 2500;
 	
 	public FakeServer(Point location, Game g) {
 		deltaX = deltaY = 0;
 		game = g;
-		for(int c = 0; c < 2500; c++){
+		for(int c = 0; c < foodLimit; c++){
 			Cell tempFood = new Cell(5,(new Point2D.Double((int)(Math.random()*5000), (int)(Math.random()*5000))));
 			tempFood.generateColor();
 			food.add(tempFood);
@@ -55,6 +59,11 @@ public class FakeServer {
 			// System.out.println(player.getNewLocation());
 			player.setRadius(player.getRadius() - (player.getRadius() / 50000));
 			//game.setPlayer(player);
+			if(food.size() <= foodLimit){
+				Cell tempFood = new Cell(5,(new Point2D.Double((int)(Math.random()*5000), (int)(Math.random()*5000))));
+				tempFood.generateColor();
+				food.add(tempFood);
+			}
 			try {
 				Thread.sleep(8);
 			} catch (InterruptedException e) {
@@ -124,9 +133,6 @@ public class FakeServer {
 			if((xDiff + yDiff) <= collisionCheck){
 				player.addRadius(1);
 				food.remove(c);
-				Cell tempFood = new Cell(5,(new Point2D.Double((int)(Math.random()*5000), (int)(Math.random()*5000))));
-				tempFood.generateColor();
-				food.add(tempFood);
 			}
 		}
 	}
