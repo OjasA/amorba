@@ -8,11 +8,12 @@ import javax.swing.JPanel;
 
 public abstract class AbstractDraw extends JPanel {
 	private BufferedImage buffer;
-	public AbstractDraw(Window window)
-	{
-		buffer = new BufferedImage(window.getWidth(), window.getHeight(), BufferedImage.TYPE_INT_RGB);
+
+	public AbstractDraw(Window window) {
+		buffer = new BufferedImage(window.getWidth(), window.getHeight(),
+				BufferedImage.TYPE_INT_RGB);
 	}
-	
+
 	public abstract void draw(Graphics2D g2d);
 
 	public void paintComponent(Graphics g) {

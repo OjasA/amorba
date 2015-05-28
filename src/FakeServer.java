@@ -74,7 +74,6 @@ public class FakeServer {
 			try {
 				Thread.sleep(8);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -165,7 +164,13 @@ public class FakeServer {
 	public static int getNewID() {
 		return nextID++;
 	}
-
+	
+	/**
+	 * Round a double to significant figures
+	 * @param num the double to be rounded
+	 * @param n the target number of significant figures
+	 * @return num rounded to n significant figures
+	 */
 	public static double roundToSignificantFigures(double num, int n) {
 		if (num == 0) {
 			return 0;

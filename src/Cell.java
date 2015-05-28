@@ -2,9 +2,21 @@ import java.awt.Color;
 import java.awt.geom.Point2D;
 
 public class Cell {
+	/**
+	 * The radius of the cell
+	 */
 	private double radius;
+	/**
+	 * Current location of the cell
+	 */
 	private Point2D.Double location;
+	/**
+	 * Target location for the cell
+	 */
 	private Point2D.Double newLocation;
+	/**
+	 * Color of the cell
+	 */
 	private Color color;
 
 	public Cell(int theradius, Point2D.Double theLocation) {
@@ -18,7 +30,8 @@ public class Cell {
 		setColor(color);
 	}
 
-	public Cell(int i, Point2D.Double theLocation, int xSpeed, int ySpeed, Color col) {
+	public Cell(int i, Point2D.Double theLocation, int xSpeed, int ySpeed,
+			Color col) {
 		setRadius(i);
 		setLocation(theLocation);
 		setColor(col);
@@ -51,7 +64,7 @@ public class Cell {
 	public Color getColor() {
 		return color;
 	}
-	
+
 	/**
 	 * Assigns a random color in RGB color space
 	 */
@@ -59,12 +72,15 @@ public class Cell {
 		float red = (float) Math.random();
 		float green = (float) Math.random();
 		float blue = (float) Math.random();
-		Color rgb = new Color(red,green,blue);
+		Color rgb = new Color(red, green, blue);
 		color = rgb;
 	}
+
 	/**
 	 * Sets a new position for the cell according to argument Point l
-	 * @param l The new location of the cell.
+	 * 
+	 * @param l
+	 *            The new location of the cell.
 	 */
 	public void setNewLocation(Point2D.Double l) {
 		newLocation = l;
