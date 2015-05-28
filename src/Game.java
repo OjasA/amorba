@@ -37,6 +37,7 @@ public class Game extends AbstractDraw implements KeyListener {
 	public static final int BOARD_SIZE = 5000;
 	
 	public Game(String theName, GameWindow theWindow, int ident) {
+		super(theWindow);
 		test = "";
 		name = theName;
 		//this will eventually come from server
@@ -82,7 +83,7 @@ public class Game extends AbstractDraw implements KeyListener {
 		boolean running  = true;
 		while(running)
 		{
-
+			player = s.getServerPlayer();
 			//close window
 			if (keys[KeyEvent.VK_ESCAPE])
 			{
