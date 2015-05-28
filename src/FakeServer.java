@@ -62,7 +62,7 @@ public class FakeServer {
 			player.setNewLocation(calculateNewLocation());
 			checkFood();
 			// System.out.println(player.getNewLocation());
-			player.setRadius(player.getRadius() - (player.getRadius() / 5000));
+			 player.setRadius(player.getRadius() - (player.getRadius() / 15000));
 			// game.setPlayer(player);
 			if (food.size() <= foodLimit) {
 				Cell tempFood = new Cell(5, (new Point2D.Double(
@@ -113,12 +113,13 @@ public class FakeServer {
 
 		double newDeltaX = Math.cos(direction) * speed;
 		double newDeltaY = Math.sin(direction) * speed;
-
+		//newDeltaX = roundToSignificantFigures(newDeltaX, 1);
+		//newDeltaY = roundToSignificantFigures(newDeltaY, 1);
 		game.setTest(Double.toString(newDeltaY));
 		newDeltaY *= -1;
 		return new Point2D.Double((player.getLocation().getX() + newDeltaX),
-				(player.getLocation().getY() + newDeltaY));
-		// return new Point(100, 100);
+					(player.getLocation().getY() + newDeltaY));
+		//return new Point2D.Double(player.getLocation().getX() + 3, player.getLocation().getY() + 3);
 
 	}
 
