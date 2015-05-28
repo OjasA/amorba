@@ -62,7 +62,7 @@ public class FakeServer {
 			player.setNewLocation(calculateNewLocation());
 			checkFood();
 			// System.out.println(player.getNewLocation());
-			player.setRadius(player.getRadius() - (player.getRadius() / 50000));
+			player.setRadius(player.getRadius() - (player.getRadius() / 5000));
 			// game.setPlayer(player);
 			if (food.size() <= foodLimit) {
 				Cell tempFood = new Cell(5, (new Point2D.Double(
