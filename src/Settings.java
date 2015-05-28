@@ -43,7 +43,7 @@ public class Settings extends JFrame {
 		BufferedImage img = null;
 		try {
 			img = ImageIO.read(new File("resources/amorbaicon-bmp-small.png")); // read
-																			// image
+			// image
 
 		} catch (IOException e1) {
 			e1.printStackTrace();
