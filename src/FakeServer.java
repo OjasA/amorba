@@ -146,6 +146,12 @@ public class FakeServer {
 		deltaX = position.getX() - game.getWidth() / 2;
 		deltaY = position.getY() - game.getHeight() / 2;
 		deltaY *= -1;
+		
+		if (deltaX == 0 && deltaY == 0)
+		{
+			return player.getLocation();
+		}
+		
 		double distance = Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
 		if (distance > 3 * player.getRadius()) {
 			distance = 3 * player.getRadius();
