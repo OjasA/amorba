@@ -165,8 +165,10 @@ public class FakeServer {
 		
 		double newDeltaX = Math.cos(direction) * speed;
 		double newDeltaY = Math.sin(direction) * speed;
+		/*
 		newDeltaX = roundToSignificantFigures(newDeltaX,1);
 		newDeltaY = roundToSignificantFigures(newDeltaY,1);
+		*/
 		game.setTest(Double.toString(newDeltaY));
 		newDeltaY *= -1;
 		return new Point2D.Double((player.getLocation().getX() + newDeltaX),
