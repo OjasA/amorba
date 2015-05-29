@@ -85,6 +85,10 @@ public class Game extends AbstractDraw implements KeyListener {
 			// close window
 			if (keys[KeyEvent.VK_ESCAPE]) {
 				window.closeWindow();
+				JFrame escaped = new JFrame();
+				JOptionPane.showMessageDialog(escaped,
+						"You exited the game!", "You died!",
+						JOptionPane.WARNING_MESSAGE);
 				running = false;
 			}
 			if (player.getRadius() <= 0) {
@@ -232,6 +236,11 @@ public class Game extends AbstractDraw implements KeyListener {
 						(int) (f.getLocation().getY()), 8, 8);
 			}
 		} catch (java.util.ConcurrentModificationException e) {
+		}
+		if (keys[KeyEvent.VK_W]) {
+			FreeMass mass = new FreeMass(new Point2D.Double(((player.getLocation().getX() + player.getRadius()*1.5)), (player.getLocation().getY())), 0,0, player.getColor());
+			mass.moveAndDraw(g2d,player);
+			
 		}
 	}
 
