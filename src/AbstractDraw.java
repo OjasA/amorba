@@ -19,9 +19,8 @@ public abstract class AbstractDraw extends JPanel {
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		Graphics2D g2 = (Graphics2D) buffer.getGraphics();
-		// provide rendering hints to anti-alias the player
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
+				RenderingHints.VALUE_ANTIALIAS_ON); // provide rendering hints to anti-alias the player
 		g2.setRenderingHints(rh);
 		super.paintComponent(g2);
 		draw(g2);

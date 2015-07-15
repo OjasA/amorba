@@ -141,12 +141,12 @@ public class Game extends AbstractDraw implements KeyListener {
 					.getHeight() - 90), (int) (this.getBounds().getWidth()), 90);
 			g2d.setColor(Color.WHITE);
 			g2d.drawString("DEBUG MENU", 30, (int) (debugPanel.getMinY() + 15));
-			g2d.drawString("Current Position: ", 30,
+			g2d.drawString("Position: ", 30,
 					(int) (debugPanel.getMinY() + 30));
 			g2d.drawString("(" + player.getLocation().getX() + ","
 					+ player.getLocation().getY() + ")", 125,
 					(int) (debugPanel.getMinY() + 30));
-			g2d.drawString("Present Bearing: ", 30,
+			g2d.drawString("Bearing: ", 30,
 					(int) (debugPanel.getMinY() + 45));
 			g2d.drawString(test, 125, (int) (debugPanel.getMinY() + 45));
 			g2d.drawString("deltaX: ", 30, (int) (debugPanel.getMinY() + 60));
@@ -167,15 +167,15 @@ public class Game extends AbstractDraw implements KeyListener {
 					.getWidth() * 0.01), this.getHeight() / 4, 150, 90);
 			g2d.setColor(Color.WHITE);
 			g2d.drawString("CONTROLS", 30, (int) (controlPanel.getMinY() + 20));
-			g2d.drawString("D : Opens debug panel", 30,
+			g2d.drawString("D: Opens debug panel", 30,
 					(int) (controlPanel.getMinY() + 40));
-			g2d.drawString("Esc : Exits game", 30,
+			g2d.drawString("Esc: Exits game", 30,
 					(int) (controlPanel.getMinY() + 60));
-			g2d.drawString("Period : +5 size", 30,
+			g2d.drawString("Period: +5 size", 30,
 					(int) (controlPanel.getMinY() + 80));
-			g2d.drawString("Comma : -5 size", 30,
+			g2d.drawString("Comma: -5 size", 30,
 					(int) (controlPanel.getMinY() + 100));
-			g2d.drawString("Ctrl : Opens controls", 30,
+			g2d.drawString("Ctrl: Opens controls", 30,
 					(int) (controlPanel.getMinY() + 120));
 		}
 		if (keys[KeyEvent.VK_PERIOD]) {
