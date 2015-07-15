@@ -24,15 +24,12 @@ public class Game extends AbstractDraw implements KeyListener {
 	private boolean[] keys;
 	private Point position; // mouse position
 	private Thread gameThread;
-
 	private Player player;
 	private FakeServer s;
-
 	private int camX;
 	private int camY;
 	private double camSize;
 	private String test; // displays under score for debugging purposes
-
 	public static final int BOARD_SIZE = 5000;
 
 	public Game(String theName, GameWindow theWindow, int ident) {
@@ -107,7 +104,7 @@ public class Game extends AbstractDraw implements KeyListener {
 
 			// drawing tickrate
 			try {
-				Thread.sleep(1);
+				Thread.sleep(3);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

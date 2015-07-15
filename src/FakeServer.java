@@ -2,8 +2,8 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-//This class is for preliminary testing purposes only.
-//Some of this code can be eventually moved to the real server.
+// This class is for preliminary testing purposes only.
+// Some of this code can be eventually moved to the real server.
 
 public class FakeServer {
 	private double deltaX, deltaY;
@@ -44,7 +44,6 @@ public class FakeServer {
 
 			@Override
 			public void run() {
-				Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
 				act();
 			}
 		};
